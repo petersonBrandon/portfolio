@@ -132,7 +132,7 @@ const page = () => {
           <h2 className="text-4xl text-center">My Coding Journey</h2>
           <div className="flex flex-col justify-center items-center opacity-50 mt-5">
             <h3 className="text-lg text-center">
-              "The journey of a thousand miles begins with one step."
+              {`\"The journey of a thousand miles begins with one step.\"`}
             </h3>
             <h4>- Lao Tzu</h4>
           </div>
