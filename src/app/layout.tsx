@@ -23,9 +23,9 @@ export default function RootLayout({
           <motion.div className="mt-20 flex flex-col items-center w-screen relative z-0">
             <motion.div
               key={pathname}
-              initial={{ opacity: 0, translateY: 70 }}
+              initial={{ opacity: 0, translateY: 50 }}
               animate={{ opacity: 1, translateY: 0 }}
-              exit={{ opacity: 0 }}
+              exit={{ opacity: 0, translateY: 50 }}
               transition={{ duration: 0.75, ease: "easeOut" }}
               className="w-3/5 max-lg:w-10/12"
             >
