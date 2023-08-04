@@ -1,0 +1,140 @@
+import { ActionBtn } from "@/components";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { TbChevronsUpRight } from "react-icons/tb";
+
+const page = () => {
+  return (
+    <>
+      <Head>
+        <title>Projects</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon_new.ico" />
+
+        <meta name="title" property="og:title" content="Projects" />
+        <meta property="og:type" content="Website" />
+        <meta
+          name="image"
+          property="og:image"
+          content="https://www.brandonpeterson.dev/Logo%20Solid.png"
+        />
+        <meta
+          name="description"
+          property="og:description"
+          content="Brandon Peterson - Projects"
+        />
+        <meta name="author" content="Brandon Peterson" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@DevBrandon318" />
+        <meta name="twitter:title" content="Brandon Peterson - Projects" />
+        <meta
+          name="twitter:description"
+          content="Brandon Peterson - Projects"
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.brandonpeterson.dev/Logo%20Solid.png"
+        />
+      </Head>
+      <main className="flex flex-col items-center mt-5">
+        <h1 className="text-5xl">Projects</h1>
+        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-cyan-600 via-c2 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
+          <Image
+            src="/projects/BitBytes Logo.png"
+            alt="BitBytes Logo"
+            width={1000}
+            height={1000}
+            className="w-64 h-auto scale-125"
+          />
+          <div className="flex flex-col space-y-5">
+            <p>
+              BitBytes is a developer blog site that I have created and continue
+              to work on and improve.
+            </p>
+            <div className="flex justify-end text-lg">
+              <ActionBtn
+                href="https://blog.brandonpeterson.dev/"
+                target="_blank"
+                text="Check out BitBytes"
+                iconSize={30}
+              />
+            </div>
+          </div>
+        </section>
+        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-c8 via-c4 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col-reverse max-lg:space-x-0 max-lg:items-center">
+          <div className="flex flex-col space-y-5">
+            <p>
+              Level Up Goal Tracker is a mobile app that I developed to better
+              track goals and see progress as goals are completed.
+            </p>
+            <div className="flex justify-start text-lg">
+              <ActionBtn
+                href="https://blog.brandonpeterson.dev/"
+                target="_blank"
+                text="Check out Level Up"
+                iconSize={30}
+              />
+            </div>
+          </div>
+          <Image
+            src="/projects/Logo Full Dark.png"
+            alt="Level Up Logo"
+            width={1000}
+            height={1000}
+            className="w-64 h-auto scale-125"
+          />
+        </section>
+        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-lime-500 via-green-700 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
+          <Image
+            src="/projects/Simply Weather.png"
+            alt="Simply Weather Logo"
+            width={1000}
+            height={1000}
+            className="w-64 h-auto scale-125"
+          />
+          <div className="flex flex-col space-y-5">
+            <p>
+              Simply Weather is a free open source weather app that I have
+              created as I was tired of seeing ads in other weather apps.
+            </p>
+            <div className="flex justify-end text-lg">
+              <ActionBtn
+                href="https://github.com/petersonBrandon/simply-weather"
+                target="_blank"
+                text="See Simply Weather"
+                iconSize={30}
+              />
+            </div>
+          </div>
+        </section>
+        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-red-600 via-c4 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col-reverse max-lg:spa max-lg:items-center">
+          <div className="flex flex-col space-y-5">
+            <p>
+              MinUI is a minimalist focused React UI library that I have
+              created. It is still currently in early development.
+            </p>
+            <div className="flex justify-start text-lg">
+              <ActionBtn
+                href="https://github.com/petersonBrandon/MinUI"
+                target="_blank"
+                text="Check out MinUI"
+                iconSize={30}
+              />
+            </div>
+          </div>
+          <Image
+            src="/projects/MinUI.png"
+            alt="MinUI Logo"
+            width={1000}
+            height={1000}
+            className="w-64 h-auto scale-125"
+          />
+        </section>
+      </main>
+    </>
+  );
+};
+
+export default page;
