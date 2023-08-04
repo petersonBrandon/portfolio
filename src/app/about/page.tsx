@@ -4,37 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { TbCamper } from "react-icons/tb";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Me",
+  description: "Brandon Peterson - About Me",
+};
 
 const page = () => {
   return (
     <>
-      <Head>
-        <title>About Me</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon_new.ico" />
-
-        <meta name="title" property="og:title" content="About Me" />
-        <meta property="og:type" content="Website" />
-        <meta
-          name="image"
-          property="og:image"
-          content="https://www.brandonpeterson.dev/Logo%20Solid.png"
-        />
-        <meta
-          name="description"
-          property="og:description"
-          content="Brandon Peterson - About"
-        />
-        <meta name="author" content="Brandon Peterson" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@DevBrandon318" />
-        <meta name="twitter:title" content="About Me" />
-        <meta name="twitter:description" content="Brandon Peterson - About" />
-        <meta
-          name="twitter:image"
-          content="https://www.brandonpeterson.dev/Logo%20Solid.png"
-        />
-      </Head>
       <main>
         <section className="flex flex-col items-center mt-5">
           <h1 className="text-5xl">About Me</h1>

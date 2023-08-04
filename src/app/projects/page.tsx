@@ -4,45 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { TbChevronsUpRight } from "react-icons/tb";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "Brandon Peterson - Projects",
+};
 
 const page = () => {
   return (
     <>
-      <Head>
-        <title>Projects</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon_new.ico" />
-
-        <meta name="title" property="og:title" content="Projects" />
-        <meta property="og:type" content="Website" />
-        <meta
-          name="image"
-          property="og:image"
-          content="https://www.brandonpeterson.dev/Logo%20Solid.png"
-        />
-        <meta
-          name="description"
-          property="og:description"
-          content="Brandon Peterson - Projects"
-        />
-        <meta name="author" content="Brandon Peterson" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@DevBrandon318" />
-        <meta name="twitter:title" content="Brandon Peterson - Projects" />
-        <meta
-          name="twitter:description"
-          content="Brandon Peterson - Projects"
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.brandonpeterson.dev/Logo%20Solid.png"
-        />
-      </Head>
       <main className="flex flex-col items-center mt-5">
         <h1 className="text-5xl">Projects</h1>
         <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-cyan-600 via-c2 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
           <Image
-            src="/projects/BitBytes Logo.png"
+            src="/Projects/BitBytes Logo.png"
             alt="BitBytes Logo"
             width={1000}
             height={1000}
@@ -79,7 +55,7 @@ const page = () => {
             </div>
           </div>
           <Image
-            src="/projects/Logo Full Dark.png"
+            src="/Projects/Logo Full Dark.png"
             alt="Level Up Logo"
             width={1000}
             height={1000}
@@ -88,7 +64,7 @@ const page = () => {
         </section>
         <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-lime-500 via-green-700 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
           <Image
-            src="/projects/Simply Weather.png"
+            src="/Projects/Simply Weather.png"
             alt="Simply Weather Logo"
             width={1000}
             height={1000}
@@ -125,7 +101,7 @@ const page = () => {
             </div>
           </div>
           <Image
-            src="/projects/MinUI.png"
+            src="/Projects/MinUI.png"
             alt="MinUI Logo"
             width={1000}
             height={1000}
