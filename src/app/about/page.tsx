@@ -123,42 +123,42 @@ const page = () => {
             />
             <TimelineBox
               title="Jan 2023"
-              description="I begin deveoping the Level Up Goal Tracker app with React Native."
+              description="I began deveoping the Level Up Goal Tracker app with React Native."
               side="right"
             />
             <TimelineBox
               title="Dec 2022"
-              description="I graduate with a Bachelor\'s degree in Software Engineering from Brigham Young University - Idaho."
+              description={`I graduated with a Bachelor\'s degree in Software Engineering from Brigham Young University - Idaho.`}
               side="left"
             />
             <TimelineBox
               title="Feb 2022"
-              description="I begin working for MasterClass as a software automation test engineer contractor."
+              description="I began working for MasterClass as a software automation test engineer contractor."
               side="left"
             />
             <TimelineBox
               title="Jan 2022"
-              description="I take some project management courses and backend development focused courses."
+              description="I took some project management courses and backend development focused courses."
               side="left"
             />
             <TimelineBox
               title="Jul 2021"
-              description="I take courses to further understand JavaScript and algorithm design."
+              description="I took courses to further understand JavaScript and algorithm design."
               side="right"
             />
             <TimelineBox
               title="Jan 2021"
-              description="I begin developing a developer blog using NEXT.js, Redux, and MongoDB. (This was precursor to my BitBytes Developer Blog.)"
+              description="I began developing a developer blog using NEXT.js, Redux, and MongoDB. (This was precursor to my BitBytes Developer Blog.)"
               side="left"
             />
             <TimelineBox
               title="Jun 2020"
-              description="I begin working with NEXT.js and start to learn React.js."
+              description="I began working with NEXT.js and start to learn React.js."
               side="right"
             />
             <TimelineBox
               title="Jan 2020"
-              description="I learn about full stack development, databases, and create a demo store website using Node.js, Express.js, and MongoDB."
+              description="I started learning about full stack development, databases, and create a demo store website using Node.js, Express.js, and MongoDB."
               side="right"
             />
             <TimelineBox
@@ -173,7 +173,7 @@ const page = () => {
             />
             <TimelineBox
               title="Jan 2019"
-              description="I take my first C++ course that introduced me procedural programming and taught me a greater passion for programming."
+              description="I took my first C++ course that introduced me procedural programming and taught me a greater passion for programming."
               side="left"
             />
             <TimelineBox
