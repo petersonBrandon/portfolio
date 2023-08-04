@@ -9,11 +9,6 @@ import { usePathname } from "next/navigation";
 
 const exo = Albert_Sans({ weight: ["500"], subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Brandon Peteson",
-  description: "Brandon Peterson's Website",
-};
-
 export default function RootLayout({
   children,
 }: {
