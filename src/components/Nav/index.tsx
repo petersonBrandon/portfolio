@@ -15,18 +15,17 @@ const NavBar = () => {
   return (
     <nav className="w-screen h-20 bg-opacity-50 backdrop-blur-lg fixed top-0 flex flex-row justify-center items-center z-50">
       <section className="w-3/5 flex flex-row justify-between max-lg:w-11/12">
-        <Link
-          href="/"
-          className="hover:scale-110 ease-in-out duration-300 max-lg:z-50"
-        >
-          <Image
-            src={"/Logo.svg"}
-            alt="B Logo"
-            width={500}
-            height={500}
-            className="h-16 w-auto"
-          />
-        </Link>
+        <div onClick={() => setMenuVisible(false)} className="max-lg:z-50">
+          <Link href="/" className="hover:scale-110 ease-in-out duration-300">
+            <Image
+              src={"/Logo.svg"}
+              alt="B Logo"
+              width={500}
+              height={500}
+              className="h-16 w-auto"
+            />
+          </Link>
+        </div>
         <div
           onClick={() => setMenuVisible(false)}
           className={`flex max-lg:absolute max-lg:w-screen max-lg:top-0 max-lg:left-0 justify-center max-lg:h-screen max-lg:items-start z-40 ${
