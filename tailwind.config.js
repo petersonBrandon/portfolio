@@ -38,6 +38,7 @@ module.exports = {
       },
       translate: {
         "x-complete": "100vw",
+        "y-complete": "100vh",
       },
       backgroundSize: {
         "1.5x": "150%",
