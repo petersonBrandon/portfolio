@@ -47,7 +47,7 @@ const page = () => {
             </p>
             <div className="flex justify-start text-lg">
               <ActionBtn
-                href="https://blog.brandonpeterson.dev/"
+                href="https://www.levelupgoaltracker.com/"
                 target="_blank"
                 text="Check out Level Up"
                 iconSize={30}
