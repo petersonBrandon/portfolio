@@ -48,7 +48,11 @@ const NavBar = () => {
               href="/projects"
               current={pathname === "/projects"}
             />
-            <NavBtn title="Blog" href="https://blog.brandonpeterson.dev" />
+            <NavBtn
+              title="Blog"
+              href="https://blog.brandonpeterson.dev"
+              target="_blank"
+            />
             <Link
               download={true}
               href={"Brandon Peterson.pdf"}

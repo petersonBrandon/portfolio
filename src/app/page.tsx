@@ -44,6 +44,7 @@ export default function Home() {
               <ActionBtn
                 href="https://blog.brandonpeterson.dev"
                 text="Check out my blog"
+                target="_blank"
                 bouncing={true}
               />
             </div>
