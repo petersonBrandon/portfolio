@@ -118,7 +118,7 @@ const page = () => {
           <div className="flex flex-col md:grid grid-cols-9 mx-auto p-2 text-blue-50 mt-10">
             <TimelineBox
               title="Current"
-              description="I blog about the latest technical topics I've been working on, am currently developing a react UI library, and have been working on a simple weather app with react native that should be published to google play later this month."
+              description="I blog about the latest technical topics I've been working on, am currently developing a react UI library, and have been working on a simple weather app with react native that is currently available in the google play store."
               side="left"
             />
             <TimelineBox
