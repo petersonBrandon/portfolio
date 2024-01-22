@@ -5,23 +5,14 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  TbChevronsUpRight,
   TbUser,
-  TbSend,
   TbArrowNarrowRight,
   TbTools,
   TbExternalLink,
 } from "react-icons/tb";
-import { Metadata } from "next";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
-import { CircleLoader, DotLoader, GridLoader } from "react-spinners";
-
-export const metadata: Metadata = {
-  title: "Brandon Peterson - Full Stack Developer",
-  description: "Brandon Peterson's Portfolio",
-};
+import { GridLoader } from "react-spinners";
 
 interface PostType {
   slug: string;
@@ -63,6 +54,33 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Brandon Peterson - Full Stack Developer</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon_new.ico" />
+        <meta
+          name="title"
+          property="og:title"
+          content="Brandon Peterson - Full Stack Developer"
+        />
+        <meta property="og:type" content="Website" />
+        <meta
+          name="image"
+          property="og:image"
+          content="https://brandonpeterson.dev/Logo Solid.png"
+        />
+        <meta name="author" content="Brandon Peterson" />
+        <meta name="twitter:card" content="Home" />
+        <meta name="twitter:site" content="@brandon_p_dev" />
+        <meta
+          name="twitter:title"
+          content="Brandon Peterson - Full Stack Developer"
+        />
+        <meta
+          name="twitter:image"
+          content="https://brandonpeterson.dev/Logo Solid.png"
+        />
+      </Head>
       <main className="space-y-20">
         <section className="flex flex-row mt-20 space-x-10 justify-center items-center max-lg:flex-col max-lg:space-x-0 max-lg:mt-10">
           <div>
