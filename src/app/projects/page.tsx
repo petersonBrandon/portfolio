@@ -1,4 +1,4 @@
-import { ActionBtn } from "@/components";
+import { ActionBtn, Quote } from "@/components";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,9 +16,13 @@ const page = () => {
     <>
       <main className="flex flex-col items-center mt-5">
         <h1 className="text-5xl">Projects</h1>
-        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-cyan-600 via-c2 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
+        <Quote
+          quote="The only way to do great work is to love what you do."
+          author="Steve Jobs"
+        />
+        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-cyan-600 via-c2 to-c1 bg-1.5 text-2xl w-full mt-10 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
           <Image
-            src="/Projects/BitBytes Logo.png"
+            src="/Projects/BitBytes Logo.webp"
             alt="BitBytes Logo"
             width={1000}
             height={1000}
@@ -26,8 +30,8 @@ const page = () => {
           />
           <div className="flex flex-col space-y-5">
             <p>
-              BitBytes is a developer blog site that I have created and continue
-              to work on and improve.
+              BitBytes is a developer blog site that I have created, post on,
+              and continue to improve.
             </p>
             <div className="flex justify-end text-lg">
               <ActionBtn
@@ -55,7 +59,7 @@ const page = () => {
             </div>
           </div>
           <Image
-            src="/Projects/Logo Full Dark.png"
+            src="/Projects/Logo Full Dark.webp"
             alt="Level Up Logo"
             width={1000}
             height={1000}
@@ -64,7 +68,7 @@ const page = () => {
         </section>
         <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-lime-500 via-green-700 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
           <Image
-            src="/Projects/Simply Weather.png"
+            src="/Projects/Simply Weather.webp"
             alt="Simply Weather Logo"
             width={1000}
             height={1000}
@@ -101,7 +105,7 @@ const page = () => {
             </div>
           </div>
           <Image
-            src="/Projects/MinUI.png"
+            src="/Projects/MinUI.webp"
             alt="MinUI Logo"
             width={1000}
             height={1000}
