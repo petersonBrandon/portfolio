@@ -23,6 +23,7 @@ module.exports = {
       },
       animation: {
         text: "text 5s ease infinite",
+        "click-bounce": "click-bounce 0.3s ease-in-out",
       },
       keyframes: {
         text: {
@@ -34,6 +35,11 @@ module.exports = {
             "background-size": "400% 400%",
             "background-position": "right center",
           },
+        },
+        "click-bounce": {
+          "0%": { scale: "1" },
+          "50%": { scale: "0.8" },
+          "100%": { scale: "1" },
         },
       },
       translate: {
