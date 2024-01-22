@@ -160,6 +160,7 @@ export default function Home() {
                   return (
                     <Link
                       href={`https://blog.brandonpeterson.dev/${post.category}/${post.title}`}
+                      key={post.title}
                       target="_blank"
                       className="w-full border-4 bg-opacity-50 backdrop-blur-md border-white my-3 rounded-xl max-lg:w-full overflow-hidden group"
                     >
