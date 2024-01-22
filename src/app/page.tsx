@@ -1,3 +1,5 @@
+"use client";
+
 import { ActionBtn, Quote } from "@/components";
 import Head from "next/head";
 import Image from "next/image";
@@ -8,15 +10,57 @@ import {
   TbSend,
   TbArrowNarrowRight,
   TbTools,
+  TbExternalLink,
 } from "react-icons/tb";
 import { Metadata } from "next";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
+import { CircleLoader, DotLoader, GridLoader } from "react-spinners";
 
 export const metadata: Metadata = {
   title: "Brandon Peterson - Full Stack Developer",
   description: "Brandon Peterson's Portfolio",
 };
 
+interface PostType {
+  slug: string;
+  parent: string;
+  title: string;
+  subtitle: string;
+  tags: string[];
+  date: string;
+  author: string;
+  read_time: string;
+  author_image: string;
+  image: string;
+  image_credits_text?: string;
+  image_credits_link?: string;
+  category: string;
+}
+
 export default function Home() {
+  const [posts, setPosts] = useState();
+  useEffect(() => {
+    axios
+      .get("https://blog.brandonpeterson.dev/api/getPosts?count=5")
+      .then(function (response) {
+        console.log(response.data.posts);
+        setPosts(response.data.posts);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  const showLoading = () => {
+    return (
+      <div className="w-full flex justify-center items-center">
+        <GridLoader color="#ffff" loading={true} />
+      </div>
+    );
+  };
+
   return (
     <>
       <main className="space-y-20">
@@ -89,6 +133,60 @@ export default function Home() {
               </div>
             </div>
           </Link>
+        </section>
+        <section className="flex flex-col space-y-10">
+          <h3 className="text-3xl">Recent Blog Posts</h3>
+          <div className="flex flex-col">
+            {posts != undefined
+              ? posts.map((post: PostType) => {
+                  return (
+                    <Link
+                      href={`https://blog.brandonpeterson.dev/${post.category}/${post.title}`}
+                      target="_blank"
+                      className="w-full border-4 bg-opacity-50 backdrop-blur-md border-white my-3 rounded-xl max-lg:w-full overflow-hidden group"
+                    >
+                      <div className="flex max-lg:flex-col">
+                        <div className="max-h-96 w-4/12 overflow-hidden flex flex-col items-center justify-center max-lg:w-full aspect-video">
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="object-cover w-full h-full group-hover:scale-125 ease-in-out duration-300"
+                          />
+                        </div>
+                        <section className="flex justify-between items-start p-5 w-full space-x-3">
+                          <div className="flex flex-col space-y-3 justify-between w-full max-lg:flex-col">
+                            <div>
+                              <h1 className="text-2xl mr-4">{post.title}</h1>
+                              <p className="mt-2 text-sm opacity-75">{`${post.read_time} - ${post.date}`}</p>
+                            </div>
+                            <div>
+                              <h2 className="text-md mr-4">{post.subtitle}</h2>
+                            </div>
+                            <div className="flex justify-between w-full">
+                              {post.image_credits_link != null ? (
+                                <div
+                                  className="w-2/5 pl-5 pr-5 text-right text-xs pt-1"
+                                  onClick={() =>
+                                    window.open(post.image_credits_link)
+                                  }
+                                >
+                                  {post.image_credits_text}
+                                </div>
+                              ) : (
+                                <></>
+                              )}
+                            </div>
+                          </div>
+                          <div className="opacity-0 -translate-x-12 group-hover:-translate-x-0 group-hover:opacity-100 ease-in-out duration-300 h-full flex justify-center items-center max-lg:hidden">
+                            <TbExternalLink className="w-10 h-10" />
+                          </div>
+                        </section>
+                      </div>
+                    </Link>
+                  );
+                })
+              : showLoading()}
+          </div>
         </section>
       </main>
     </>
