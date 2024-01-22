@@ -9,6 +9,7 @@ import {
   TbArrowNarrowRight,
   TbTools,
   TbExternalLink,
+  TbFileSad,
 } from "react-icons/tb";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -32,24 +33,51 @@ interface PostType {
 
 export default function Home() {
   const [posts, setPosts] = useState<PostType[] | undefined>(undefined);
+  const [noPosts, setNoPosts] = useState<boolean>(false);
+
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
   useEffect(() => {
-    axios
-      .get("https://blog.brandonpeterson.dev/api/getPosts?count=5")
-      .then(function (response) {
-        console.log(response.data.posts);
-        setPosts(response.data.posts);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const fetchPosts = async () => {
+      let success: boolean = false;
+      let count = 0;
+      do {
+        axios
+          .get("https://blog.brandonpeterson.dev/api/getPosts?count=5")
+          .then(function (response) {
+            setPosts(response.data.posts);
+            success = true;
+          })
+          .catch(function (error) {
+            console.log(error);
+            success = false;
+          });
+        count++;
+        await delay(3000);
+      } while (success == false && count < 5);
+      if (!success) {
+        setNoPosts(true);
+      }
+    };
+    fetchPosts();
   }, []);
 
   const showLoading = () => {
-    return (
-      <div className="w-full flex justify-center items-center">
-        <GridLoader color="#ffff" loading={true} />
-      </div>
-    );
+    if (noPosts) {
+      return (
+        <div className="w-full flex justify-center items-center opacity-70 space-x-3">
+          <p>Could not retrieve posts.</p>
+          <TbFileSad className="w-7 h-7" />
+        </div>
+      );
+    } else {
+      return (
+        <div className="w-full flex justify-center items-center">
+          <GridLoader color="#ffff" loading={true} />
+        </div>
+      );
+    }
   };
 
   return (
