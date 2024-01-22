@@ -1,4 +1,4 @@
-import { ActionBtn, TimelineBox } from "@/components";
+import { ActionBtn, Quote, TimelineBox } from "@/components";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,7 +36,7 @@ const page = () => {
           </p>
           <div className="flex flex-row space-x-10 mt-10 max-lg:space-x-0">
             <Image
-              src="/Family.jpg"
+              src="/Family.webp"
               alt="Family"
               width={1000}
               height={1000}
@@ -109,12 +109,10 @@ const page = () => {
 
         <section className="flex flex-col items-center">
           <h2 className="text-4xl text-center">My Coding Journey</h2>
-          <div className="flex flex-col justify-center items-center opacity-50 mt-5">
-            <h3 className="text-lg text-center">
-              {`\"The journey of a thousand miles begins with one step.\"`}
-            </h3>
-            <h4>- Lao Tzu</h4>
-          </div>
+          <Quote
+            quote="The journey of a thousand miles begins with one step.g"
+            author="Lao Tzu"
+          />
           <div className="flex flex-col md:grid grid-cols-9 mx-auto p-2 text-blue-50 mt-10">
             <TimelineBox
               title="Current"
