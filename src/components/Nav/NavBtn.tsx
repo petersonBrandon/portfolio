@@ -6,12 +6,20 @@ interface NavBtnProps {
   href: string;
   current?: boolean;
   target?: string;
+  onClick?: () => void;
 }
 
-const NavBtn: React.FC<NavBtnProps> = ({ title, href, current, target }) => {
+const NavBtn: React.FC<NavBtnProps> = ({
+  title,
+  href,
+  current,
+  target,
+  onClick,
+}) => {
   return (
     <Link
       href={href}
+      onClick={onClick}
       target={target == undefined ? "" : target}
       className={`text-lg opacity-75 font-bold hover:opacity-100 hover:text-white ease-in-out duration-300
       ${current ? "text-c11 !opacity-100" : ""}

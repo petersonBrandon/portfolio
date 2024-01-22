@@ -17,7 +17,13 @@ const NavBar = () => {
   return (
     <nav className="w-screen h-20 bg-opacity-50 backdrop-blur-lg fixed top-0 flex flex-row justify-center items-center z-50">
       <section className="w-3/5 flex flex-row justify-between max-lg:w-11/12">
-        <div onClick={() => setMenuVisible(false)} className="max-lg:z-50">
+        <div
+          onClick={() => {
+            setMenuVisible(false);
+            disableScroll.off();
+          }}
+          className="max-lg:z-50"
+        >
           <Link href="/" className="hover:scale-110 ease-in-out duration-300">
             <Image
               src={"/Logo.svg"}
@@ -42,21 +48,25 @@ const NavBar = () => {
             <NavBtn title="Home" href="/" current={pathname === "/"} />
             <NavBtn
               title="About"
+              onClick={() => disableScroll.off()}
               href="/about"
               current={pathname === "/about"}
             />
             <NavBtn
               title="Projects"
+              onClick={() => disableScroll.off()}
               href="/projects"
               current={pathname === "/projects"}
             />
             <NavBtn
               title="Blog"
+              onClick={() => disableScroll.off()}
               href="https://blog.brandonpeterson.dev"
               target="_blank"
             />
             <Link
               download={true}
+              onClick={() => disableScroll.off()}
               href={"Brandon Peterson.pdf"}
               target="_blank"
               className="text-lg rounded-full font-bold hover:opacity-100 hover:text-white px-5 py-2 hover:bg-c2 ring-4 ring-inset ring-c2 ease-in-out duration-300 max-lg:w-full max-lg:text-center"
