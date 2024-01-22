@@ -45,7 +45,12 @@ const NavBar = () => {
           <div
             className={`flex flex-row space-x-10 justify-center items-center max-lg:flex-col max-lg:space-x-0 max-lg:space-y-8 ease-in-out duration-300 transition max-lg:mt-24 max-lg:w-4/5 max-lg:backdrop-blur-3xl max-lg:p-10 max-lg:rounded-3xl max-lg:ring-2 max-lg:ring-c11 max-lg:bg-c1 max-lg:bg-opacity-50`}
           >
-            <NavBtn title="Home" href="/" current={pathname === "/"} />
+            <NavBtn
+              title="Home"
+              onClick={() => disableScroll.off()}
+              href="/"
+              current={pathname === "/"}
+            />
             <NavBtn
               title="About"
               onClick={() => disableScroll.off()}
