@@ -66,7 +66,7 @@ export default function Home() {
       <main className="space-y-20">
         <section className="flex flex-row mt-20 space-x-10 justify-center items-center max-lg:flex-col max-lg:space-x-0 max-lg:mt-10">
           <div>
-            <div className="w-52 h-52 overflow-hidden rounded-full">
+            <div className="w-52 h-52 overflow-hidden rounded-full shadow-2xl">
               <Image
                 src="/BrandonPeterson.webp"
                 alt="Brandon Peterson"
