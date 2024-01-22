@@ -31,7 +31,7 @@ interface PostType {
 }
 
 export default function Home() {
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState<PostType[] | undefined>(undefined);
   useEffect(() => {
     axios
       .get("https://blog.brandonpeterson.dev/api/getPosts?count=5")
