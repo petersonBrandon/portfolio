@@ -21,9 +21,9 @@ const page = () => {
 
         <section className="mt-10">
           <p className="text-xl">
-            {`Hello there! I\'m Brandon, a passionate full-stack developer and
+            {`Hello there! I\'m Brandon, a passionate software engineer and
             lifelong learner. My expertise lies in creating seamless user
-            experiences and turning ideas into reality through code. Currently,
+            experiences through meticulous testing and process optimization. Currently,
             I work as a senior software automation test engineer contractor at `}
             <Link
               href="https://www.masterclass.com/"
@@ -35,13 +35,13 @@ const page = () => {
             {`, ensuring product integrity through automated testing.`}
           </p>
           <div className="flex flex-row space-x-10 mt-10 max-lg:space-x-0">
-            <Image
+            {/* <Image
               src="/Family.webp"
               alt="Family"
               width={1000}
               height={1000}
               className="w-72 h-auto rounded-xl max-lg:hidden"
-            />
+            /> */}
             <div className="text-xl flex flex-col space-y-10">
               <p>
                 {`I hold a Bachelor\'s degree in Software Engineering from `}
@@ -65,17 +65,17 @@ const page = () => {
                 {` application.`}
               </p>
               <p>
-                {`Beyond my professional commitments, I actively contribute to the `}
+                {`Beyond my professional commitments, I contribute to my `}
                 <Link
                   href="https://blog.brandonpeterson.dev/"
                   target="_blank"
                   className="border-b-2 border-c11 hover:text-c11 ease-in-out duration-300"
                 >
-                  BitBytes Developer Blog
+                  Blog
                 </Link>
-                {`, exploring various technologies, and I\'m
-                also working on MinUI, a minimalist UI library to offer a simple
-                and responsive interface.`}
+                {`, where I explore various technologies. I also am constantly learning new tools, and skills.
+                Whether it is learning a new algorithm patern, language, or making small projects, I am 
+                always increasing my skills in software engineering.`}
               </p>
               <p>
                 {`You can discover the projects I\'m currently working on by
@@ -89,14 +89,14 @@ const page = () => {
                 </Link>
                 {`.`}
               </p>
-              <div className="flex flex-row w-full justify-end">
+              {/* <div className="flex flex-row w-full justify-end">
                 <ActionBtn
                   href="Brandon Peterson.pdf"
                   text="Check out my resume"
                   target="_blank"
                   download={true}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
@@ -116,7 +116,7 @@ const page = () => {
           <div className="flex flex-col md:grid grid-cols-9 mx-auto p-2 text-blue-50 mt-10">
             <TimelineBox
               title="Current"
-              description="I blog about the latest technical topics I've been working on, am currently developing a react UI library, and have been working on a simple weather app with react native that is currently available in the google play store."
+              description="I blog about the latest technical topics I've been working on and have been working on a simple weather app with react native that is currently available in the google play store."
               side="left"
             />
             <TimelineBox

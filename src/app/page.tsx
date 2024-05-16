@@ -134,7 +134,7 @@ export default function Home() {
               >
                 Brandon
               </Link>
-              {`. I\'m a full stack developer, a blogger, and a life long learner.`}
+              {`. I\'m a Software Engineer, an Optimization Strategist, and an Analytical Problem Solver.`}
             </h1>
             <div className="mt-14 flex">
               <ActionBtn

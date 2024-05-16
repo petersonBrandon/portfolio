@@ -89,7 +89,7 @@ const page = () => {
             </div>
           </div>
         </section>
-        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-red-600 via-c4 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col-reverse max-lg:spa max-lg:items-center">
+        {/* <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-red-600 via-c4 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col-reverse max-lg:spa max-lg:items-center">
           <div className="flex flex-col space-y-5">
             <p>
               MinUI is a minimalist focused React UI library that I am working
@@ -111,7 +111,7 @@ const page = () => {
             height={1000}
             className="w-64 h-auto scale-125"
           />
-        </section>
+        </section> */}
       </main>
     </>
   );

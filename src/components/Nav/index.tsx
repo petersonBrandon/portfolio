@@ -69,7 +69,7 @@ const NavBar = () => {
               href="https://blog.brandonpeterson.dev"
               target="_blank"
             />
-            <Link
+            {/* <Link
               download={true}
               onClick={() => disableScroll.off()}
               href={"Brandon Peterson.pdf"}
@@ -77,7 +77,7 @@ const NavBar = () => {
               className="text-lg rounded-full font-bold hover:opacity-100 hover:text-white px-5 py-2 hover:bg-c2 ring-4 ring-inset ring-c2 ease-in-out duration-300 max-lg:w-full max-lg:text-center"
             >
               Resume
-            </Link>
+            </Link> */}
           </div>
         </div>
         <button
