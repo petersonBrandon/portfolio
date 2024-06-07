@@ -22,17 +22,17 @@ const page = () => {
         <section className="mt-10">
           <p className="text-xl">
             {`Hello there! I\'m Brandon, a passionate software engineer and
-            lifelong learner. My expertise lies in creating seamless user
-            experiences through meticulous testing and process optimization. Currently,
+            lifelong learner. I specialize in crafting seamless user experiences achieved through rigorous testing, 
+            process optimization, and comprehensive full-stack web development. Currently,
             I work as a senior software automation test engineer contractor at `}
             <Link
-              href="https://www.masterclass.com/"
+              href="https://www.digitaldreamforge.com/"
               target="_blank"
               className="border-b-2 border-c11 hover:text-c11 ease-in-out duration-300"
             >
-              MasterClass
+              Digital Dream Forge
             </Link>
-            {`, ensuring product integrity through automated testing.`}
+            {`, as a contractor for MasterClass where I ensure product integrity through automated testing.`}
           </p>
           <div className="flex flex-row space-x-10 mt-10 max-lg:space-x-0">
             {/* <Image
@@ -52,17 +52,7 @@ const page = () => {
                 >
                   Brigham Young University - Idaho
                 </Link>
-                {` and am pursuing my graduate studies. Additionally, I am the lead
-                developer at Mt Zion Enterprises LLC, where I founded and
-                developed the `}
-                <Link
-                  href="https://www.levelupgoaltracker.com/"
-                  target="_blank"
-                  className="border-b-2 border-c11 hover:text-c11 ease-in-out duration-300"
-                >
-                  Level Up Goal Tracker
-                </Link>
-                {` application.`}
+                {` and am pursuing my graduate studies.`}
               </p>
               <p>
                 {`Beyond my professional commitments, I contribute to my `}
@@ -74,11 +64,19 @@ const page = () => {
                   Blog
                 </Link>
                 {`, where I explore various technologies. I also am constantly learning new tools, and skills.
-                Whether it is learning a new algorithm patern, language, or making small projects, I am 
+                Whether it is learning a new algorithm patterns, languages, or making small projects, I am 
                 always increasing my skills in software engineering.`}
               </p>
               <p>
-                {`You can discover the projects I\'m currently working on by
+                {`You can discover the projects I\'m currently working on `}
+                <Link
+                  href="/projects"
+                  target="_blank"
+                  className="border-b-2 border-c11 hover:text-c11 ease-in-out duration-300"
+                >
+                  here
+                </Link>
+                {`, or by
                 checking out my `}
                 <Link
                   href="https://github.com/petersonBrandon"
@@ -116,12 +114,12 @@ const page = () => {
           <div className="flex flex-col md:grid grid-cols-9 mx-auto p-2 text-blue-50 mt-10">
             <TimelineBox
               title="Current"
-              description="I blog about the latest technical topics I've been working on and have been working on a simple weather app with react native that is currently available in the google play store."
+              description="I blog about the latest technical topics I've been working on and I am working with our team to rebrand/redesign the Level Up Goal Tracker App."
               side="left"
             />
             <TimelineBox
               title="Jan 2023"
-              description="I began deveoping the Level Up Goal Tracker app with React Native."
+              description="I began deveoping the prototype of the Level Up Goal Tracker app with React Native."
               side="right"
             />
             <TimelineBox
