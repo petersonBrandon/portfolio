@@ -30,12 +30,12 @@ const page = () => {
           />
           <div className="flex flex-col space-y-5">
             <p>
-              I'm currently collaborating on the design and deployment of Level
+              {`I\'m currently collaborating on the design and deployment of Level
               Up Goal Tracker—an app aimed at simplifying goal tracking and
               progress visualization, with built-in sharing capabilities among
               peers. My involvement began with designing and developing the
-              initial prototype as a proof of concept. Presently, we're focused
-              on rebranding for the official product launch.
+              initial prototype as a proof of concept. Presently, we\'re focused
+              on rebranding for the official product launch.`}
             </p>
             <div className="flex justify-end text-lg">
               <ActionBtn
