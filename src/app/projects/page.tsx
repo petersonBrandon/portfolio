@@ -20,7 +20,7 @@ const page = () => {
           quote="The only way to do great work is to love what you do."
           author="Steve Jobs"
         />
-        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-c8 via-c4 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col-reverse max-lg:space-x-0 max-lg:items-center">
+        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-c8 via-c4 to-c1 bg-1.5 text-2xl max-lg:text-lg w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
           <Image
             src="/Projects/Transparent_Logo_Icon_Dark.png"
             alt="Level Up Logo"
@@ -47,7 +47,7 @@ const page = () => {
             </div>
           </div>
         </section>
-        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-cyan-600 via-c2 to-c1 bg-1.5 text-2xl w-full mt-10 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
+        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-cyan-600 via-c2 to-c1 bg-1.5 text-2xl max-lg:text-lg w-full mt-10 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
           <Image
             src="/Projects/BitBytes Logo.webp"
             alt="BitBytes Logo"
@@ -70,7 +70,7 @@ const page = () => {
             </div>
           </div>
         </section>
-        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-lime-500 via-green-700 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
+        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-lime-500 via-green-700 to-c1 bg-1.5 text-2xl max-lg:text-lg w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
           <Image
             src="/Projects/Simply Weather.webp"
             alt="Simply Weather Logo"
