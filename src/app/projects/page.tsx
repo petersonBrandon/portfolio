@@ -20,9 +20,9 @@ const page = () => {
           quote="The only way to do great work is to love what you do."
           author="Steve Jobs"
         />
-        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-c8 via-c4 to-c1 bg-1.5 text-2xl max-lg:text-lg w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
+        <section className="flex flex-row justify-center items-center rounded-xl bg-white text-black bg-1.5 text-2xl max-lg:text-lg w-full mt-20 p-8 space-x-10 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
           <Image
-            src="/Projects/Transparent_Logo_Icon_Dark.png"
+            src="/Projects/Level Up logo.png"
             alt="Level Up Logo"
             width={1000}
             height={1000}
@@ -47,17 +47,17 @@ const page = () => {
             </div>
           </div>
         </section>
-        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-cyan-600 via-c2 to-c1 bg-1.5 text-2xl max-lg:text-lg w-full mt-10 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
+        <section className="flex flex-row justify-center items-center rounded-xl bg-white text-black bg-1.5 text-2xl max-lg:text-lg w-full mt-20 p-8 space-x-10 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
           <Image
-            src="/Projects/BitBytes Logo.webp"
-            alt="BitBytes Logo"
+            src="/Projects/Stash Logo.png"
+            alt="Stash Logo"
             width={1000}
             height={1000}
             className="w-64 h-auto scale-125"
           />
           <div className="flex flex-col space-y-5">
             <p>
-              BitBytes is my ongoing project—a dynamic blog site I crafted,
+              Stash is my ongoing project—a dynamic blog site I crafted,
               regularly contribute to, and persistently refine.
             </p>
             <div className="flex justify-end text-lg">
@@ -70,7 +70,7 @@ const page = () => {
             </div>
           </div>
         </section>
-        <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-lime-500 via-green-700 to-c1 bg-1.5 text-2xl max-lg:text-lg w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
+        <section className="flex flex-row justify-center items-center rounded-xl bg-white text-black bg-1.5 text-2xl max-lg:text-lg w-full mt-20 p-8 space-x-10 my-5 max-lg:flex-col max-lg:space-x-0 max-lg:items-center">
           <Image
             src="/Projects/Simply Weather.webp"
             alt="Simply Weather Logo"
@@ -93,29 +93,6 @@ const page = () => {
             </div>
           </div>
         </section>
-        {/* <section className="flex flex-row justify-center items-end rounded-xl bg-gradient-to-b from-red-600 via-c4 to-c1 bg-1.5 text-2xl w-full mt-20 p-8 space-x-5 my-5 max-lg:flex-col-reverse max-lg:spa max-lg:items-center">
-          <div className="flex flex-col space-y-5">
-            <p>
-              MinUI is a minimalist focused React UI library that I am working
-              on. It is still currently in early development.
-            </p>
-            <div className="flex justify-start text-lg">
-              <ActionBtn
-                href="https://github.com/petersonBrandon/MinUI"
-                target="_blank"
-                text="Check out MinUI"
-                iconSize={30}
-              />
-            </div>
-          </div>
-          <Image
-            src="/Projects/MinUI.webp"
-            alt="MinUI Logo"
-            width={1000}
-            height={1000}
-            className="w-64 h-auto scale-125"
-          />
-        </section> */}
       </main>
     </>
   );

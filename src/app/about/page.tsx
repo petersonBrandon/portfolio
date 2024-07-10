@@ -108,7 +108,7 @@ const page = () => {
         <section className="flex flex-col items-center">
           <h2 className="text-4xl text-center">My Coding Journey</h2>
           <Quote
-            quote="The journey of a thousand miles begins with one step.g"
+            quote="The journey of a thousand miles begins with one step."
             author="Lao Tzu"
           />
           <div className="flex flex-col md:grid grid-cols-9 mx-auto p-2 text-blue-50 mt-10">

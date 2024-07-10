@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={exo.className}>
         <AnimatePresence mode="popLayout">
           <Nav />
-          <motion.div className="mt-20 flex flex-col items-center w-screen relative z-0">
+          <motion.div className="mt-20 flex flex-col items-center w-full relative z-0">
             <motion.div
               key={pathname}
               initial={{ opacity: 0, translateY: 50 }}
