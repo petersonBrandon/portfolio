@@ -104,18 +104,18 @@ const About = () => {
               <TbRocket className="mr-2" /> Education & Growth
             </h2>
             <p className="text-lg">
-              I hold a Bachelor's degree in Software Engineering from{" "}
+              {`I hold a Bachelor\'s degree in Software Engineering from `}
               <Link
                 href="https://www.byui.edu/"
                 target="_blank"
                 className="border-b-2 border-blue-300 hover:text-blue-300 transition duration-300"
               >
                 Brigham Young University - Idaho
-              </Link>{" "}
-              and am currently pursuing graduate studies. My journey doesn't
-              stop there - I'm constantly learning new tools and skills, from
+              </Link>
+              {` and am currently pursuing graduate studies. My journey doesn\'t
+              stop there - I\'m constantly learning new tools and skills, from
               mastering algorithm patterns to exploring new languages and
-              creating small projects.
+              creating small projects.`}
             </p>
           </div>
         </motion.section>
