@@ -40,10 +40,10 @@ const NavBar = () => {
             menuVisible
               ? "max-lg:translate-x-0"
               : "max-lg:-translate-x-x-complete"
-          } ease-in-out duration-300 transition max-lg:bg-c1`}
+          } ease-in-out duration-300 transition max-lg:bg-opacity-50 max-lg:backdrop-blur-lg`}
         >
           <div
-            className={`flex flex-row space-x-10 justify-center items-center max-lg:flex-col max-lg:space-x-0 max-lg:space-y-8 ease-in-out duration-300 transition max-lg:mt-24 max-lg:w-4/5 max-lg:backdrop-blur-3xl max-lg:p-10 max-lg:rounded-3xl max-lg:ring-2 max-lg:ring-c11 max-lg:bg-c1 max-lg:bg-opacity-50`}
+            className={`text-white flex flex-row space-x-10 justify-center items-center max-lg:flex-col max-lg:space-x-0 max-lg:space-y-8 ease-in-out duration-300 transition max-lg:mt-24 max-lg:w-4/5 max-lg:backdrop-blur-3xl max-lg:p-10 max-lg:rounded-3xl max-lg:ring-2 max-lg:ring-c11 max-lg:bg-c1 max-lg:bg-opacity-50`}
           >
             <NavBtn
               title="Home"
@@ -62,12 +62,6 @@ const NavBar = () => {
               onClick={() => disableScroll.off()}
               href="/projects"
               current={pathname === "/projects"}
-            />
-            <NavBtn
-              title="Blog"
-              onClick={() => disableScroll.off()}
-              href="https://blog.brandonpeterson.dev"
-              target="_blank"
             />
             {/* <Link
               download={true}
@@ -92,7 +86,7 @@ const NavBar = () => {
           }`}
         >
           <div
-            className={`hidden max-lg:flex justify-center items-center h-full w-16`}
+            className={`hidden max-lg:flex justify-center items-center h-full w-16 text-white`}
           >
             <div>
               {menuVisible ? <CgClose size={40} /> : <CgMenuGridO size={40} />}

@@ -2,24 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  color: #f9f9f9;
-}
-
+html,
 body {
-  background-color: #03071e;
-}
-
-button,
-textarea,
-input,
-select,
-a {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-tap-highlight-color: transparent;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  background-color: #111827;
 }
