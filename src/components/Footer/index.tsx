@@ -1,54 +1,36 @@
+// app/Footer.tsx
 import Link from "next/link";
 import React from "react";
-import {
-  TbCopyright,
-  TbBrandLinkedin,
-  TbBrandGithub,
-  TbBrandYoutube,
-} from "react-icons/tb";
-import { RiTwitterXLine } from "react-icons/ri";
+import { TbCopyright, TbBrandLinkedin, TbBrandGithub } from "react-icons/tb";
 
 const Footer = () => {
   return (
-    <>
-      <hr className="mt-20 opacity-50" />
-      <footer className="flex flex-row justify-between mt-10 mb-5">
-        <div className="flex flex-row justify-center items-center space-x-2 opacity-50">
-          <TbCopyright size={20} />
-          <p>Brandon Peterson 2024</p>
+    <footer className="bg-gray-900 text-white py-8">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex items-center mb-4 md:mb-0">
+            <TbCopyright size={20} className="mr-2" />
+            <p>Brandon Peterson {new Date().getFullYear()}</p>
+          </div>
+          <div className="flex space-x-6">
+            <Link
+              href="https://www.linkedin.com/in/brandon-peterson-194572198/"
+              target="_blank"
+              className="hover:text-blue-400 transition duration-300"
+            >
+              <TbBrandLinkedin size={30} />
+            </Link>
+            <Link
+              href="https://github.com/petersonBrandon"
+              target="_blank"
+              className="hover:text-gray-400 transition duration-300"
+            >
+              <TbBrandGithub size={30} />
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-row justify-center items-center space-x-5">
-          <Link
-            href="https://www.linkedin.com/in/brandon-peterson-194572198/"
-            target="_blank"
-            className="opacity-50 hover:opacity-100 ease-in-out duration-300"
-          >
-            <TbBrandLinkedin size={30} />
-          </Link>
-          <Link
-            href="https://github.com/petersonBrandon"
-            target="_blank"
-            className="opacity-50 hover:opacity-100 ease-in-out duration-300"
-          >
-            <TbBrandGithub size={30} />
-          </Link>
-          {/* <Link
-            href="/"
-            target="_blank"
-            className="opacity-50 hover:opacity-100 ease-in-out duration-300"
-          >
-            <TbBrandYoutube size={30} />
-          </Link> */}
-          {/* <Link
-            href="https://twitter.com/brandon_p_dev"
-            target="_blank"
-            className="opacity-50 hover:opacity-100 ease-in-out duration-300"
-          >
-            <RiTwitterXLine size={30} />
-          </Link> */}
-        </div>
-      </footer>
-    </>
+      </div>
+    </footer>
   );
 };
 

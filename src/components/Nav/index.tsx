@@ -63,12 +63,6 @@ const NavBar = () => {
               href="/projects"
               current={pathname === "/projects"}
             />
-            <NavBtn
-              title="Blog"
-              onClick={() => disableScroll.off()}
-              href="https://blog.brandonpeterson.dev"
-              target="_blank"
-            />
             {/* <Link
               download={true}
               onClick={() => disableScroll.off()}
@@ -92,7 +86,7 @@ const NavBar = () => {
           }`}
         >
           <div
-            className={`hidden max-lg:flex justify-center items-center h-full w-16`}
+            className={`hidden max-lg:flex justify-center items-center h-full w-16 text-white`}
           >
             <div>
               {menuVisible ? <CgClose size={40} /> : <CgMenuGridO size={40} />}
