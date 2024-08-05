@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { TbExternalLink } from "react-icons/tb";
 import Wave from "react-wavify";
-import { Metadata } from "next";
 
 const Projects = () => {
   const containerVariants = {

@@ -6,3 +6,7 @@ html,
 body {
   background-color: #111827;
 }
+
+#color-picker .react-colorful {
+  width: auto;
+}

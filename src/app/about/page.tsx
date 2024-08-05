@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { TbCode, TbBrain, TbRocket } from "react-icons/tb";
 import Wave from "react-wavify";
+import { TbCode, TbBrain, TbRocket } from "react-icons/tb";
 
 const About = () => {
   const containerVariants = {
