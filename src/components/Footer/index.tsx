@@ -5,7 +5,7 @@ import { TbCopyright, TbBrandLinkedin, TbBrandGithub } from "react-icons/tb";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-8">
+    <footer className="bg-gray-900 text-white py-8 z-10 relative">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center mb-4 md:mb-0">

@@ -63,6 +63,12 @@ const NavBar = () => {
               href="/projects"
               current={pathname === "/projects"}
             />
+            <NavBtn
+              title="Tools"
+              onClick={() => disableScroll.off()}
+              href="/tools"
+              current={pathname === "/tools"}
+            />
             {/* <Link
               download={true}
               onClick={() => disableScroll.off()}
