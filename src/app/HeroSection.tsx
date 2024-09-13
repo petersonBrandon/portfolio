@@ -36,8 +36,10 @@ const animations = [
 const rotatingWords = [
   "Brandon Peterson",
   "Developer",
-  "Optimist",
+  "Automation Engineer",
+  "Optimizationist",
   "Strategist",
+  "Optimist",
 ];
 
 export default function HeroSection() {
@@ -84,7 +86,7 @@ export default function HeroSection() {
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="z-10 text-center"
+        className="z-10 text-center w-full flex flex-col justify-center items-center"
       >
         <h1 className="text-4xl lg:text-9xl font-bold mb-4 text-white lg:h-32">
           <AnimatePresence mode="wait">
@@ -112,8 +114,8 @@ export default function HeroSection() {
             </motion.div>
           </AnimatePresence>
         </h1>
-        <h2 className="text-xl lg:text-3xl mb-8 text-blue-200">
-          Full Stack Developer & Problem Solver
+        <h2 className="text-xl w-3/4 md:w-full text-center lg:text-3xl mb-8 text-blue-200">
+          Full Stack Developer & Automation Engineer
         </h2>
         <Link
           href="/about"
