@@ -22,7 +22,7 @@ import {
   SiSelenium,
   SiCucumber,
   SiAppium,
-  SiTestinglibrary,
+  SiGithubactions,
 } from "react-icons/si";
 import { BsKanban } from "react-icons/bs";
 import { TbStack2 } from "react-icons/tb";
@@ -55,6 +55,7 @@ const skillCategories = [
       { name: "Selenium", icon: SiSelenium, color: "#43B02A" },
       { name: "Cucumber", icon: SiCucumber, color: "#23D96C" },
       { name: "Appium", icon: SiAppium, color: "#663399" },
+      { name: "CI/CD", icon: SiGithubactions, color: "#2088FF" },
     ],
   },
   {
