@@ -36,10 +36,9 @@ const animations = [
 const rotatingWords = [
   "Brandon Peterson",
   "Developer",
-  "Automation Engineer",
+  "Quality Engineer",
   "Optimizationist",
   "Strategist",
-  "Optimist",
 ];
 
 export default function HeroSection() {
@@ -115,7 +114,7 @@ export default function HeroSection() {
           </AnimatePresence>
         </h1>
         <h2 className="text-xl w-3/4 md:w-full text-center lg:text-3xl mb-8 text-blue-200">
-          Full Stack Developer & Automation Engineer
+          Quality Engineer & Full Stack Developer
         </h2>
         <Link
           href="/about"
