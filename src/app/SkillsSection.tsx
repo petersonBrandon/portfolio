@@ -19,6 +19,10 @@ import {
   SiTailwindcss,
   SiJira,
   SiPostgresql,
+  SiSelenium,
+  SiCucumber,
+  SiAppium,
+  SiTestinglibrary,
 } from "react-icons/si";
 import { BsKanban } from "react-icons/bs";
 import { TbStack2 } from "react-icons/tb";
@@ -48,6 +52,9 @@ const skillCategories = [
     skills: [
       { name: "Git", icon: FaGitAlt, color: "#F05032" },
       { name: "Jira", icon: SiJira, color: "#0052CC" },
+      { name: "Selenium", icon: SiSelenium, color: "#43B02A" },
+      { name: "Cucumber", icon: SiCucumber, color: "#23D96C" },
+      { name: "Appium", icon: SiAppium, color: "#663399" },
     ],
   },
   {
@@ -67,9 +74,11 @@ const skillCategories = [
   {
     title: "General",
     skills: [
+      { name: "QA Testing", icon: TbStack2, color: "#9B59B6" },
+      { name: "QA Automation", icon: TbStack2, color: "#3498DB" },
+      { name: "Team Collaboration", icon: TbStack2, color: "#45B7D1" },
       { name: "Full Stack Development", icon: TbStack2, color: "#FF6B6B" },
       { name: "Object Oriented Development", icon: TbStack2, color: "#4ECDC4" },
-      { name: "Team Collaboration", icon: TbStack2, color: "#45B7D1" },
     ],
   },
 ];

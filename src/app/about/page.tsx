@@ -95,8 +95,15 @@ const About = () => {
               >
                 Digital Dream Forge
               </Link>
-              , ensuring product integrity for MasterClass through automated
-              testing.
+              , ensuring product integrity for{" "}
+              <Link
+                href="https://www.masterclass.com/"
+                target="_blank"
+                className="border-b-2 border-blue-300 hover:text-blue-300 transition duration-300"
+              >
+                MasterClass
+              </Link>{" "}
+              through automated testing.
             </p>
           </div>
           <div className="bg-white bg-opacity-10 rounded-lg p-6 backdrop-blur-sm">
@@ -112,7 +119,7 @@ const About = () => {
               >
                 Brigham Young University - Idaho
               </Link>
-              {` and am currently pursuing graduate studies. My journey doesn\'t
+              {`. My journey doesn\'t
               stop there - I\'m constantly learning new tools and skills, from
               mastering algorithm patterns to exploring new languages and
               creating small projects.`}
