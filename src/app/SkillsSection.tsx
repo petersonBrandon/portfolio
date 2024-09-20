@@ -25,7 +25,7 @@ import {
   SiGithubactions,
 } from "react-icons/si";
 import { BsKanban } from "react-icons/bs";
-import { TbStack2 } from "react-icons/tb";
+import { TbStack2, TbApi } from "react-icons/tb";
 
 const skillCategories = [
   {
@@ -50,6 +50,7 @@ const skillCategories = [
   {
     title: "Tools & Technologies",
     skills: [
+      { name: "RESTful APIs", icon: TbApi, color: "#FF5733" },
       { name: "Git", icon: FaGitAlt, color: "#F05032" },
       { name: "Jira", icon: SiJira, color: "#0052CC" },
       { name: "Selenium", icon: SiSelenium, color: "#43B02A" },
