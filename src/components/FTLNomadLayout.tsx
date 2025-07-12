@@ -677,7 +677,7 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
                     animate={{ opacity: 1 }}
                     transition={{ delay: hasBooted ? 0 : 4.2 }}
                   >
-                    ● Captain's ready room
+                    {`● Captain\'s ready room`}
                   </motion.div>
                   <motion.div
                     className="text-blue-400"

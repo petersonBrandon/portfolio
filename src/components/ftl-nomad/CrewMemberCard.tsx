@@ -76,7 +76,7 @@ export function CrewMemberCard({ member }: CrewMemberCardProps) {
               {member.name}
             </h3>
             <p className="text-sm text-gray-300 italic mb-3 leading-tight">
-              "{member.concept}"
+              {`"${member.concept}"`}
             </p>
 
             {/* Character specifications */}

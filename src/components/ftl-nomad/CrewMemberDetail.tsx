@@ -70,7 +70,7 @@ export function CrewMemberDetail({ member }: CrewMemberDetailProps) {
         <h1 className="text-3xl font-bold text-blue-400 mb-2 font-mono">
           PERSONNEL FILE: {member.name.toUpperCase()}
         </h1>
-        <p className="text-gray-300 italic">"{member.concept}"</p>
+        <p className="text-gray-300 italic">{`"${member.concept}"`}</p>
       </div>
 
       {/* Main Content */}

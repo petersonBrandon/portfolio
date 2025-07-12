@@ -26,8 +26,8 @@ export default async function FTLNomadHome() {
           FTL NOMAD CAMPAIGN DATABASE
         </h1>
         <p className="text-gray-300">
-          Welcome to the ship's central command system. Access all campaign
-          data, mission logs, and crew information from this console.
+          {`Welcome to the ship\'s central command system. Access all campaign
+          data, mission logs, and crew information from this console.`}
         </p>
       </div>
 
