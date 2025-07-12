@@ -1,21 +1,22 @@
-// app/page.tsx
-import { Suspense } from "react";
-import HeroSection from "./HeroSection";
-import SkillsSection from "./SkillsSection";
-import ProjectsPreview from "./ProjectsPreview";
+import { PageContent, TerminalPrompt } from "@/components/PageContent";
 
-export const metadata = {
-  title: "Brandon Peterson - Full Stack Developer",
-  description:
-    "Portfolio of Brandon Peterson, a Software Engineer, Optimization Strategist, and Analytical Problem Solver.",
-};
+export default function HomePage() {
+  const content = `> Quantum OS v3.14.159
+> Loading personal matrix...
+> Establishing neural link...
+> Welcome, Test Engineer Protocol Active
 
-export default function Home() {
+SYSTEM STATUS: ✓ OPERATIONAL
+CAFFINE LEVELS: ██████████ 100%
+BUG DETECTION: ████████░░ 89%
+SCI-FI MODE: ██████████ 100%
+
+"Quality is not an act, it is a habit." - Aristotle
+"In testing we trust, in automation we excel."`;
+
   return (
-    <main className="">
-      <HeroSection />
-      <SkillsSection />
-      <ProjectsPreview />
-    </main>
+    <PageContent title="SYSTEM INITIALIZATION">
+      <TerminalPrompt delay={200}>{content}</TerminalPrompt>
+    </PageContent>
   );
 }

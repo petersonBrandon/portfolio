@@ -1,148 +1,194 @@
+// app/projects/page.tsx
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { TbExternalLink } from "react-icons/tb";
-import Wave from "react-wavify";
+import { PageContent, TerminalPrompt } from "@/components/PageContent";
+import { useState, useEffect } from "react";
 
-const Projects = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
+interface ProjectCardProps {
+  project: {
+    title: string;
+    classification: string;
+    status: string;
+    statusColor: string;
+    description: string;
+    tech: string[];
+    metrics: string[];
   };
+  index: number;
+}
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5 },
-    },
-  };
+const ProjectCard = ({ project, index }: ProjectCardProps) => {
+  const [isVisible, setIsVisible] = useState(false);
 
-  const projects = [
-    {
-      title: "Level Up Goal Tracker",
-      imageSrc: "/Projects/Level Up logo.png",
-      description:
-        "An app aimed at simplifying goal tracking and progress visualization, with built-in sharing capabilities among peers. My involvement began with designing and developing the initial prototype as a proof of concept. Presently, we're focused on rebranding for the official product launch, and I currently have been focusing on the aligning the Level Up Goal Tracker website with the new brand design we have.",
-      link: "https://www.levelupgoaltracker.com/",
-      technologies: ["React Native", "Firebase", "Redux", "NEXT.js", "React"],
-    },
-    {
-      title: "Simply Weather",
-      imageSrc: "/Projects/Simply Weather.webp",
-      description:
-        "A complimentary, open-source weather application I developed to delve into React Native. It provides users with current weather conditions and forecasts in a clean, intuitive interface.",
-      link: "https://github.com/petersonBrandon/simply-weather",
-      technologies: ["React Native", "OpenWeatherMap API", "Expo"],
-    },
-  ];
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 200 + index * 200); // Base delay + staggered delay
+
+    return () => clearTimeout(timer);
+  }, [index]);
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-900 to-indigo-700 pt-20">
-      <div className="absolute inset-0 z-0 overflow-hidden h-full w-full bottom-0 flex justify-center items-end">
-        <Wave
-          fill="#111827"
-          paused={false}
-          style={{ display: "flex", height: "75%" }}
-          options={{
-            height: 40,
-            amplitude: 40,
-            speed: 0.15,
-            points: 4,
-          }}
-        />
+    <div
+      className={`border border-cyan-400 border-opacity-30 bg-black bg-opacity-40 p-6 rounded transition-all duration-800 ease-out transform ${
+        isVisible
+          ? "opacity-100 translate-y-0 scale-100"
+          : "opacity-0 translate-y-8 scale-95"
+      }`}
+    >
+      <div className="flex justify-between items-start mb-4">
+        <div>
+          <h3 className="text-cyan-400 text-xl font-bold">{project.title}</h3>
+          <div className="text-orange-400 text-sm">
+            Classification: {project.classification}
+          </div>
+        </div>
+        <div className={`${project.statusColor} text-sm`}>
+          STATUS: {project.status}
+        </div>
       </div>
-
-      <motion.main
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="relative z-10 container mx-auto px-4 py-16 text-white"
-      >
-        <motion.section
-          variants={itemVariants}
-          className="flex flex-col items-center mb-16"
-        >
-          <h1 className="text-5xl font-bold mb-8">Projects</h1>
-        </motion.section>
-
-        <motion.section variants={itemVariants} className="space-y-16">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
-          ))}
-        </motion.section>
-      </motion.main>
+      <div className="text-gray-300 mb-4">{project.description}</div>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {project.tech.map((tech, techIndex) => (
+          <span
+            key={techIndex}
+            className="bg-cyan-400 bg-opacity-20 text-cyan-300 px-2 py-1 rounded text-xs"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+      <div className="text-xs text-gray-500">
+        {project.metrics.map((metric, metricIndex) => (
+          <div key={metricIndex}>{metric}</div>
+        ))}
+      </div>
     </div>
   );
 };
 
-interface ProjectCardProps {
-  title: string;
-  imageSrc: string;
-  description: string;
-  link: string;
-  technologies: string[];
-}
+export default function ProjectsPage() {
+  const [showClassified, setShowClassified] = useState(false);
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
-  title,
-  imageSrc,
-  description,
-  link,
-  technologies,
-}) => {
+  const content = `> Accessing mission logs...
+> Decrypting project archives...
+> Loading deployment history...
+
+MISSION LOG DATABASE: ✓ LOADED
+ACTIVE PROJECTS: 7
+COMPLETED MISSIONS: 23
+SUCCESS RATE: ███████████ 96.7%`;
+
+  const projects = [
+    {
+      title: "NEXUS-7 Testing Framework",
+      classification: "ALPHA-PRIORITY",
+      status: "ACTIVE",
+      statusColor: "text-green-400",
+      description:
+        "Advanced automation framework for quantum-level testing protocols. Implements AI-driven test case generation with 99.3% bug detection accuracy.",
+      tech: ["Python", "Selenium", "AI/ML", "Docker"],
+      metrics: [
+        "Mission Duration: 8 months",
+        "Team Size: 4 engineers",
+        "Deploy Status: Production Ready",
+      ],
+    },
+    {
+      title: "Quantum E-Commerce Platform",
+      classification: "BETA-SECURE",
+      status: "DEPLOYED",
+      statusColor: "text-green-400",
+      description:
+        "Full-stack e-commerce solution with integrated payment processing and real-time inventory management. Handles 10K+ concurrent users.",
+      tech: ["React", "Node.js", "PostgreSQL", "AWS"],
+      metrics: [
+        "Mission Duration: 6 months",
+        "Team Size: 6 engineers",
+        "Performance: 99.9% uptime",
+      ],
+    },
+    {
+      title: "Neural API Gateway",
+      classification: "GAMMA-EXPERIMENTAL",
+      status: "TESTING",
+      statusColor: "text-yellow-400",
+      description:
+        "Microservices architecture with intelligent load balancing and self-healing capabilities. Features quantum-encrypted data transmission.",
+      tech: ["Go", "Kubernetes", "gRPC", "Redis"],
+      metrics: [
+        "Mission Duration: 4 months",
+        "Team Size: 3 engineers",
+        "Test Coverage: 94.2%",
+      ],
+    },
+    {
+      title: "Cybersecurity Audit Engine",
+      classification: "DELTA-CLASSIFIED",
+      status: "COMPLETED",
+      statusColor: "text-green-400",
+      description:
+        "Automated security testing suite for enterprise applications. Identifies vulnerabilities with machine learning pattern recognition.",
+      tech: ["Python", "TensorFlow", "OWASP", "Jenkins"],
+      metrics: [
+        "Mission Duration: 5 months",
+        "Team Size: 2 engineers",
+        "Threats Detected: 1,247 vulnerabilities",
+      ],
+    },
+    {
+      title: "Holographic Data Visualizer",
+      classification: "EPSILON-RESEARCH",
+      status: "ARCHIVED",
+      statusColor: "text-red-400",
+      description:
+        "Interactive 3D data visualization platform for complex testing metrics. Features real-time performance monitoring and predictive analytics.",
+      tech: ["Three.js", "D3.js", "WebGL", "MongoDB"],
+      metrics: [
+        "Mission Duration: 3 months",
+        "Team Size: 5 engineers",
+        "Archive Reason: Budget constraints",
+      ],
+    },
+  ];
+
+  // Show classified section after all projects
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowClassified(true);
+    }, 200 + projects.length * 200 + 100); // After all projects + small buffer
+
+    return () => clearTimeout(timer);
+  }, [projects.length]);
+
   return (
-    <motion.div className="bg-white bg-opacity-10 rounded-lg p-6 backdrop-blur-sm">
-      <div className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-10">
-        <div className="relative w-full md:w-1/3">
-          <Image
-            src={imageSrc}
-            alt={`${title} preview`}
-            width={300}
-            height={300}
-            className="rounded-lg w-full h-auto"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-lg">
-            <Link
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white flex items-center space-x-2 bg-blue-600 px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300"
-            >
-              <span>View Project</span>
-              <TbExternalLink size={20} />
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-col space-y-4 w-full md:w-2/3">
-          <h2 className="text-2xl font-bold">{title}</h2>
-          <motion.div initial={false} className="overflow-hidden">
-            <p className="text-lg">{description}</p>
-          </motion.div>
-          <div className="flex flex-wrap gap-2 mt-4">
-            {technologies.map((tech, index) => (
-              <span
-                key={index}
-                className="bg-blue-700 text-blue-100 text-sm font-semibold px-3 py-1 rounded-full"
-              >
-                {tech}
-              </span>
-            ))}
+    <PageContent title="MISSION LOGS - PROJECT ARCHIVE">
+      <div className="space-y-6 mb-8">
+        <TerminalPrompt delay={200}>{content}</TerminalPrompt>
+
+        <div className="mt-8 space-y-8">
+          {projects.map((project, index) => (
+            <ProjectCard key={index} project={project} index={index} />
+          ))}
+
+          {/* Classified Projects Section */}
+          <div
+            className={`p-4 border border-orange-400 border-opacity-30 bg-orange-400 bg-opacity-10 rounded transition-all duration-800 ease-out transform ${
+              showClassified
+                ? "opacity-100 translate-y-0 scale-100"
+                : "opacity-0 translate-y-8 scale-95"
+            }`}
+          >
+            <div className="text-orange-400 text-sm font-bold mb-2">
+              CLASSIFIED PROJECTS:
+            </div>
+            <div className="text-gray-300 text-sm">
+              Additional high-security projects available upon clearance
+              verification. Contact system administrator for access credentials.
+            </div>
           </div>
         </div>
       </div>
-    </motion.div>
+    </PageContent>
   );
-};
-
-export default Projects;
+}
