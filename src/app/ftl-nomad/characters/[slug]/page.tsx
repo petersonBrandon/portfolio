@@ -4,7 +4,7 @@ import { getCrewMemberBySlug, getAllCrewMembers } from "@/lib/ftl-crew";
 import { notFound } from "next/navigation";
 
 interface CrewMemberPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -15,8 +15,9 @@ export async function generateStaticParams() {
 }
 
 export default async function CrewMemberPage({ params }: CrewMemberPageProps) {
-  console.log(params.slug);
-  const member = await getCrewMemberBySlug(params.slug);
+  const { slug } = await params;
+  console.log(slug);
+  const member = await getCrewMemberBySlug(slug);
 
   if (!member) {
     notFound();
