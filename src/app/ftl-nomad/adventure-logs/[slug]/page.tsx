@@ -12,11 +12,12 @@ export async function generateStaticParams() {
 }
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export default async function MissionLogDetail({ params }: Props) {
-  const log = await getMissionLogBySlug(params.slug);
+  const { slug } = await params;
+  const log = await getMissionLogBySlug(slug);
 
   if (!log) {
     notFound();
