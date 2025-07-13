@@ -724,7 +724,7 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
 
       {/* Bottom status bar */}
       <motion.div
-        className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-80 border-t border-blue-400 border-opacity-30 p-2 text-xs z-50"
+        className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-80 border-t border-blue-400 border-opacity-30 p-2 text-xs z-40"
         initial={{ y: hasBooted ? 0 : 100, opacity: hasBooted ? 1 : 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{
