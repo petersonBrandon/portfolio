@@ -287,69 +287,7 @@ const SystemInfoPanel = ({
           </span>
         </div>
 
-        <div className="pt-2 border-t border-gray-600">
-          <div className="text-gray-400 mb-1">DESCRIPTION:</div>
-          <div className="text-gray-300 text-sm md:text-xs leading-relaxed">
-            {system.description}
-          </div>
-        </div>
-
-        <div className="pt-2 border-t border-gray-600">
-          <div className="text-gray-400 mb-1">RESOURCES:</div>
-          <div className="flex flex-wrap gap-1">
-            {system.resources.map((resource, index) => (
-              <span
-                key={index}
-                className="bg-blue-400 bg-opacity-20 px-2 py-1 rounded text-blue-300 text-sm md:text-xs"
-              >
-                {resource}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {system.pointsOfInterest && system.pointsOfInterest.length > 0 && (
-          <div className="pt-2 border-t border-gray-600">
-            <div className="text-gray-400 mb-1">POINTS_OF_INTEREST:</div>
-            <div className="space-y-2 md:space-y-1">
-              {system.pointsOfInterest.map((poi, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <span className="text-lg md:text-sm">
-                    {getPOIIcon(poi.type)}
-                  </span>
-                  <div className="flex-1">
-                    <div className="text-cyan-400 text-sm md:text-xs">
-                      {poi.name}
-                    </div>
-                    <div className="text-gray-300 text-sm md:text-xs leading-relaxed">
-                      {poi.description}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {system.tradingPosts && system.tradingPosts.length > 0 && (
-          <div className="pt-2 border-t border-gray-600">
-            <div className="text-gray-400 mb-1">TRADING_POSTS:</div>
-            <div className="text-green-400 text-sm md:text-xs">
-              {system.tradingPosts.join(", ")}
-            </div>
-          </div>
-        )}
-
-        {system.jumpGates && system.jumpGates.length > 0 && (
-          <div className="pt-2 border-t border-gray-600">
-            <div className="text-gray-400 mb-1">JUMP_GATES:</div>
-            <div className="text-purple-400 text-sm md:text-xs">
-              {system.jumpGates.join(", ")}
-            </div>
-          </div>
-        )}
-
-        {system.population && (
+        {system.population !== undefined && (
           <div className="flex justify-between">
             <span className="text-gray-400">POPULATION:</span>
             <span className="text-blue-400">
@@ -372,7 +310,115 @@ const SystemInfoPanel = ({
           </div>
         )}
 
-        {system.visited && (
+        {system.defenses && (
+          <div className="pt-2 border-t border-gray-600">
+            <div className="text-gray-400 mb-1">DEFENSES:</div>
+            <div className="text-gray-300 text-sm md:text-xs leading-relaxed">
+              {system.defenses}
+            </div>
+          </div>
+        )}
+
+        {system.climate && (
+          <div className="flex justify-between">
+            <span className="text-gray-400">CLIMATE:</span>
+            <span className="text-gray-300">{system.climate}</span>
+          </div>
+        )}
+
+        {system.gravity && (
+          <div className="flex justify-between">
+            <span className="text-gray-400">GRAVITY:</span>
+            <span className="text-gray-300">{system.gravity}</span>
+          </div>
+        )}
+
+        {system.atmosphere && (
+          <div className="flex justify-between">
+            <span className="text-gray-400">ATMOSPHERE:</span>
+            <span className="text-gray-300">{system.atmosphere}</span>
+          </div>
+        )}
+
+        <div className="pt-2 border-t border-gray-600">
+          <div className="text-gray-400 mb-1">DESCRIPTION:</div>
+          <div className="text-gray-300 text-sm md:text-xs leading-relaxed">
+            {system.description}
+          </div>
+        </div>
+
+        <div className="pt-2 border-t border-gray-600">
+          <div className="text-gray-400 mb-1">RESOURCES:</div>
+          <div className="flex flex-wrap gap-1">
+            {system.resources.length > 0 ? (
+              system.resources.map((resource, index) => (
+                <span
+                  key={index}
+                  className="bg-blue-400 bg-opacity-20 px-2 py-1 rounded text-blue-300 text-sm md:text-xs"
+                >
+                  {resource}
+                </span>
+              ))
+            ) : (
+              <span className="text-gray-500">None</span>
+            )}
+          </div>
+        </div>
+
+        {system.pointsOfInterest && (
+          <div className="pt-2 border-t border-gray-600">
+            <div className="text-gray-400 mb-1">POINTS_OF_INTEREST:</div>
+            {system.pointsOfInterest.length > 0 ? (
+              <div className="space-y-2 md:space-y-1">
+                {system.pointsOfInterest.map((poi, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <span className="text-lg md:text-sm">
+                      {getPOIIcon(poi.type)}
+                    </span>
+                    <div className="flex-1">
+                      <div className="text-cyan-400 text-sm md:text-xs">
+                        {poi.name}
+                      </div>
+                      <div className="text-gray-300 text-sm md:text-xs leading-relaxed">
+                        {poi.description}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <span className="text-gray-500">None</span>
+            )}
+          </div>
+        )}
+
+        {system.tradingPosts && (
+          <div className="pt-2 border-t border-gray-600">
+            <div className="text-gray-400 mb-1">TRADING_POSTS:</div>
+            {system.tradingPosts.length > 0 ? (
+              <div className="text-green-400 text-sm md:text-xs">
+                {system.tradingPosts.join(", ")}
+              </div>
+            ) : (
+              <span className="text-gray-500">None</span>
+            )}
+          </div>
+        )}
+
+        {system.jumpGates && (
+          <div className="pt-2 border-t border-gray-600">
+            <div className="text-gray-400 mb-1">JUMP_GATES:</div>
+            {system.jumpGates.length > 0 ? (
+              <div className="text-purple-400 text-sm md:text-xs">
+                {system.jumpGates.join(", ")}
+              </div>
+            ) : (
+              <span className="text-gray-500">None</span>
+            )}
+          </div>
+        )}
+
+        {system.lastVisit && (
           <div className="pt-2 border-t border-gray-600">
             <div className="flex justify-between">
               <span className="text-gray-400">LAST_VISIT:</span>
@@ -380,10 +426,225 @@ const SystemInfoPanel = ({
             </div>
           </div>
         )}
+
+        {system.notes && (
+          <div className="pt-2 border-t border-gray-600">
+            <div className="text-gray-400 mb-1">NOTES:</div>
+            <div className="text-gray-300 text-sm md:text-xs leading-relaxed">
+              {system.notes}
+            </div>
+          </div>
+        )}
       </div>
     </motion.div>
   );
 };
+
+// New Legend component
+const MapLegend = ({ onClose }: { onClose: () => void }) => (
+  <motion.div
+    className="absolute inset-0 md:inset-auto md:top-4 md:left-4 md:w-96 md:max-h-[calc(100%-2rem)] w-full h-full bg-black bg-opacity-95 md:bg-opacity-90 border-0 md:border md:border-blue-400 md:border-opacity-50 md:rounded p-4 text-sm z-50 overflow-y-auto"
+    initial={{ opacity: 0, x: "-100%" }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: "-100%" }}
+  >
+    <div className="flex justify-between items-start mb-3">
+      <h3 className="text-blue-400 font-bold text-xl md:text-lg">Map Legend</h3>
+      <button
+        onClick={onClose}
+        className="text-gray-400 hover:text-white text-3xl md:text-xl p-2 md:p-0"
+      >
+        ×
+      </button>
+    </div>
+
+    <div className="space-y-4 text-sm md:text-xs">
+      <div>
+        <h4 className="font-bold text-gray-300 mb-2">
+          System Types (Main Circle Color)
+        </h4>
+        <div className="grid grid-cols-1 gap-2">
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 bg-blue-500 rounded-full flex-shrink-0"></div>
+            <div>
+              <p className="text-white">
+                Core World (<span className="text-blue-400">Bright Blue</span>)
+              </p>
+              <p className="text-gray-400">
+                Major civilized planets, high population, stable economies.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 bg-green-500 rounded-full flex-shrink-0"></div>
+            <div>
+              <p className="text-white">
+                Colony (<span className="text-green-400">Bright Green</span>)
+              </p>
+              <p className="text-gray-400">
+                Established settlements, growing infrastructure, often
+                resource-rich.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 bg-yellow-500 rounded-full flex-shrink-0"></div>
+            <div>
+              <p className="text-white">
+                Frontier (<span className="text-yellow-400">Bright Yellow</span>
+                )
+              </p>
+              <p className="text-gray-400">
+                Newly explored or sparsely populated systems, often dangerous.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 bg-red-500 rounded-full flex-shrink-0"></div>
+            <div>
+              <p className="text-white">
+                Military Zone (<span className="text-red-400">Bright Red</span>)
+              </p>
+              <p className="text-gray-400">
+                Heavily fortified systems, military presence, restricted access.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 bg-purple-500 rounded-full flex-shrink-0"></div>
+            <div>
+              <p className="text-white">
+                Research Station (
+                <span className="text-purple-400">Bright Purple</span>)
+              </p>
+              <p className="text-gray-400">
+                Scientific outposts, often with unique discoveries or
+                experimental tech.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 bg-gray-500 rounded-full flex-shrink-0"></div>
+            <div>
+              <p className="text-white">
+                Derelict (<span className="text-gray-400">Gray</span>)
+              </p>
+              <p className="text-gray-400">
+                Abandoned or destroyed systems, often holding valuable salvage
+                or hidden dangers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 className="font-bold text-gray-300 mb-2">
+          System Status Indicators (Small Circles)
+        </h4>
+        <div className="grid grid-cols-1 gap-2">
+          <div className="flex items-center gap-3">
+            <div className="w-4 h-4 bg-green-400 rounded-full flex-shrink-0"></div>
+            <div>
+              <p className="text-white">
+                Visited System (
+                <span className="text-green-400">Green Dot</span>)
+              </p>
+              <p className="text-gray-400">
+                Indicates systems you have previously explored.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-4 h-4 bg-yellow-400 rounded-full flex-shrink-0"></div>
+            <div>
+              <p className="text-white">
+                Points of Interest (
+                <span className="text-yellow-400">Yellow Dot</span>)
+              </p>
+              <p className="text-gray-400">
+                Signifies the presence of notable locations or anomalies within
+                the system.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 className="font-bold text-gray-300 mb-2">
+          Threat Level (Outline Color)
+        </h4>
+        <div className="grid grid-cols-1 gap-2">
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 rounded-full border-2 border-green-400 flex-shrink-0"></div>
+            <div>
+              <p className="text-white">
+                Low Threat (<span className="text-green-400">Green Border</span>
+                )
+              </p>
+              <p className="text-gray-400">
+                Generally safe for travel, minimal hostile encounters.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 rounded-full border-2 border-yellow-400 flex-shrink-0"></div>
+            <div>
+              <p className="text-white">
+                Medium Threat (
+                <span className="text-yellow-400">Yellow Border</span>)
+              </p>
+              <p className="text-gray-400">
+                Moderate risk of hostile encounters, requires caution.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 rounded-full border-2 border-red-400 flex-shrink-0"></div>
+            <div>
+              <p className="text-white">
+                High Threat (<span className="text-red-400">Red Border</span>)
+              </p>
+              <p className="text-gray-400">
+                High probability of dangerous encounters, proceed with extreme
+                caution.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 rounded-full border-2 border-gray-400 flex-shrink-0"></div>
+            <div>
+              <p className="text-white">
+                Unknown Threat (
+                <span className="text-gray-400">Gray Border</span>)
+              </p>
+              <p className="text-gray-400">
+                Threat level not yet assessed or is variable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 className="font-bold text-gray-300 mb-2">Selected System</h4>
+        <div className="flex items-center gap-3">
+          <div className="w-5 h-5 rounded-full border-3 border-amber-400 flex-shrink-0"></div>
+          <div>
+            <p className="text-white">
+              Selected System (
+              <span className="text-amber-400">Yellow/Orange Border</span>)
+            </p>
+            <p className="text-gray-400">
+              The system currently selected and displaying detailed information.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
 
 const Hexagon = ({
   system,
@@ -518,6 +779,7 @@ export default function StarSystemMapClient({ initialSystems }: Props) {
     width: 800,
     height: 600,
   });
+  const [showLegend, setShowLegend] = useState(false); // New state for legend
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -702,17 +964,6 @@ export default function StarSystemMapClient({ initialSystems }: Props) {
           <h2 className="text-2xl md:text-3xl font-bold text-blue-400">
             STAR CHARTS
           </h2>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={resetView}
-              className="px-2 py-1 md:px-3 md:py-1 bg-blue-400 bg-opacity-20 hover:bg-opacity-30 border border-blue-400 border-opacity-50 rounded text-blue-300 text-xs md:text-sm transition-all"
-            >
-              RESET
-            </button>
-            <div className="text-xs text-gray-400">
-              {Math.round(zoom * 100)}%
-            </div>
-          </div>
         </div>
 
         <div className="h-px bg-gradient-to-r from-blue-400 to-transparent mb-4" />
@@ -731,6 +982,7 @@ export default function StarSystemMapClient({ initialSystems }: Props) {
             : "Search systems or click on them for detailed information. Yellow dots indicate points of interest. Use mouse wheel to zoom, drag to pan."}
         </div>
 
+        {/* Updated simplified legend - details in popup */}
         <div className="grid grid-cols-2 md:flex gap-2 md:gap-4 text-xs mb-4">
           <div className="flex items-center gap-1 md:gap-2">
             <div className="w-2 h-2 md:w-3 md:h-3 bg-blue-500 rounded-full"></div>
@@ -767,6 +1019,25 @@ export default function StarSystemMapClient({ initialSystems }: Props) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
         >
+          {/* Inlaid controls */}
+          <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+            <button
+              onClick={resetView}
+              className="px-2 py-1 md:px-3 md:py-1 bg-blue-400 bg-opacity-20 hover:bg-opacity-30 border border-blue-400 border-opacity-50 rounded text-blue-300 text-xs md:text-sm transition-all"
+            >
+              RESET
+            </button>
+            <button
+              onClick={() => setShowLegend(true)}
+              className="px-2 py-1 md:px-3 md:py-1 bg-blue-400 bg-opacity-20 hover:bg-opacity-30 border border-blue-400 border-opacity-50 rounded text-blue-300 text-xs md:text-sm transition-all"
+            >
+              LEGEND
+            </button>
+            <div className="text-xs text-gray-400 bg-black bg-opacity-40 px-2 py-1 rounded border border-blue-400 border-opacity-50">
+              {Math.round(zoom * 100)}%
+            </div>
+          </div>
+
           <svg
             ref={svgRef}
             width={mapWidth}
@@ -843,6 +1114,11 @@ export default function StarSystemMapClient({ initialSystems }: Props) {
               onClose={() => setSelectedSystem(null)}
             />
           )}
+        </AnimatePresence>
+
+        {/* Legend Panel */}
+        <AnimatePresence>
+          {showLegend && <MapLegend onClose={() => setShowLegend(false)} />}
         </AnimatePresence>
       </div>
 

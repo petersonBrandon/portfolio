@@ -95,6 +95,17 @@ export async function getAllSystems(): Promise<StarSystem[]> {
             pointsOfInterest: systemData.pointsOfInterest ?? [],
             tradingPosts: systemData.tradingPosts ?? [],
             jumpGates: systemData.jumpGates ?? [],
+            // Ensure all new properties are initialized if they might be missing
+            population: systemData.population ?? 0,
+            government: systemData.government ?? "",
+            economy: systemData.economy ?? "",
+            defenses: systemData.defenses ?? "",
+            starType: systemData.starType ?? "",
+            climate: systemData.climate ?? "",
+            gravity: systemData.gravity ?? "",
+            atmosphere: systemData.atmosphere ?? "",
+            age: systemData.age ?? "",
+            notes: systemData.notes ?? "",
           } as StarSystem;
         } catch (error) {
           console.error(`Error processing system file ${filePath}:`, error);
@@ -181,6 +192,20 @@ export async function getSystemGridForViewport(
           resources: [],
           visited: false,
           isEmpty: true,
+          // Initialize all new properties for empty systems
+          population: 0,
+          government: "",
+          economy: "",
+          defenses: "",
+          starType: "",
+          climate: "",
+          gravity: "",
+          atmosphere: "",
+          age: "",
+          notes: "",
+          pointsOfInterest: [],
+          tradingPosts: [],
+          jumpGates: [],
         });
       }
     }
@@ -231,6 +256,11 @@ export async function searchSystems(query: string): Promise<GridSystem[]> {
         system.starType,
         system.government,
         system.economy,
+        system.defenses, // Added defenses
+        system.climate, // Added climate
+        system.gravity, // Added gravity
+        system.atmosphere, // Added atmosphere
+        system.notes, // Added notes
         ...(system.resources || []),
         ...(system.tradingPosts || []),
         ...(system.jumpGates || []),
