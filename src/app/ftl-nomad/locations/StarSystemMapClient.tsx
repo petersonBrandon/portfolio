@@ -692,7 +692,9 @@ export default function StarSystemMapClient({ initialSystems }: Props) {
   const nonEmptySystems = systems.filter((s) => !s.isEmpty);
 
   return (
-    <div className="h-full flex flex-col min-h-0">
+    <div
+      className={`h-full flex flex-col min-h-0 ${isMobile ? "touch-none" : ""}`}
+    >
       <motion.div
         className="mb-4 flex-shrink-0"
         initial={{ opacity: 0, y: -20 }}
@@ -760,7 +762,7 @@ export default function StarSystemMapClient({ initialSystems }: Props) {
       </motion.div>
 
       {/* Full-size map container - key changes here */}
-      <div className="flex-1 relative min-h-0" ref={containerRef}>
+      <div className="flex-1 relative w-full min-h-[400px]" ref={containerRef}>
         <motion.div
           className="absolute inset-0 border border-blue-400 border-opacity-30 rounded bg-black bg-opacity-20 overflow-hidden"
           initial={{ opacity: 0, scale: 0.95 }}
