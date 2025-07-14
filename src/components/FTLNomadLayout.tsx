@@ -419,24 +419,26 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-blue-100 font-mono overflow-hidden relative">
+    <div className="min-h-screen bg-gray-900 text-blue-100 font-mono relative">
       <AnimatePresence>
         {isBooting && <BootSequence onComplete={handleBootComplete} />}
       </AnimatePresence>
 
       {/* Background effects */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-gray-900 to-black opacity-80"
+        className="fixed inset-0 bg-gradient-to-br from-indigo-900 via-gray-900 to-black opacity-80 z-0"
         initial={{ opacity: hasBooted ? 0.8 : 0 }}
         animate={{ opacity: 0.8 }}
         transition={{ duration: hasBooted ? 0 : 2, delay: hasBooted ? 0 : 4 }}
       />
-      <StarField />
-      <FTLScanner skipAnimation={hasBooted} />
+      <div className="fixed inset-0 z-0">
+        <StarField />
+        <FTLScanner skipAnimation={hasBooted} />
+      </div>
 
       {/* Hexagonal grid overlay */}
       <motion.div
-        className="absolute inset-0 opacity-5"
+        className="fixed inset-0 opacity-5 z-0"
         style={{
           backgroundImage: `
             radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.3) 1px, transparent 1px)
@@ -461,14 +463,14 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
       <AnimatePresence>
         {showInterface && (
           <motion.div
-            className="relative z-10 h-screen flex flex-col lg:flex-row"
+            className="relative z-10 min-h-screen flex flex-col lg:flex-row"
             initial={{ opacity: hasBooted ? 1 : 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: hasBooted ? 0 : 1 }}
           >
             {/* Mobile Header */}
             <motion.div
-              className="lg:hidden bg-black bg-opacity-80 border-b border-blue-400 border-opacity-30 p-4 flex items-center justify-between"
+              className="lg:hidden fixed top-0 left-0 right-0 z-20 bg-black bg-opacity-80 border-b border-blue-400 border-opacity-30 p-4 flex items-center justify-between"
               initial={{ y: hasBooted ? 0 : -50, opacity: hasBooted ? 1 : 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: hasBooted ? 0 : 0.5 }}
@@ -701,7 +703,7 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
 
             {/* Main Content Area */}
             <motion.div
-              className="flex-1 p-4 lg:p-6 bg-black bg-opacity-30 overflow-hidden flex flex-col"
+              className="flex-1 flex flex-col min-h-0"
               initial={{ x: hasBooted ? 0 : 400, opacity: hasBooted ? 1 : 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{
@@ -710,7 +712,7 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
               }}
             >
               <motion.div
-                className="flex-1 flex flex-col min-h-0"
+                className="flex-1 p-4 lg:pt-6 pt-20 bg-black bg-opacity-30 overflow-y-auto"
                 initial={{ y: hasBooted ? 0 : 20, opacity: hasBooted ? 1 : 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: hasBooted ? 0 : 1.2 }}
