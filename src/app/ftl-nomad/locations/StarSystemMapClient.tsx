@@ -692,9 +692,7 @@ export default function StarSystemMapClient({ initialSystems }: Props) {
   const nonEmptySystems = systems.filter((s) => !s.isEmpty);
 
   return (
-    <div
-      className={`h-full flex flex-col min-h-0 ${isMobile ? "touch-none" : ""}`}
-    >
+    <div className="h-full flex flex-col min-h-0">
       <motion.div
         className="mb-4 flex-shrink-0"
         initial={{ opacity: 0, y: -20 }}
