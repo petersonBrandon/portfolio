@@ -1,17 +1,18 @@
-// app/ftl-nomad/locations/page.tsx
-import ComingSoon from "@/components/ftl-nomad/ComingSoon";
+// page.tsx
+import { Suspense } from "react";
+import StarSystemMapClient from "./StarSystemMapClient";
+import { getInitialSystemGrid } from "@/lib/ftl-systems";
 
-export default function LocationsPage() {
+export default async function StarSystemMap() {
+  const systems = await getInitialSystemGrid();
+
   return (
-    <ComingSoon
-      title="STAR_CHARTS"
-      description="Galactic Navigation Database"
-      estimatedCompletion="STARDATE 2025.09.05"
-      features={[
-        "Star system mapping",
-        "Planetary atmosphere analysis",
-        "Unexplored sector tracking",
-      ]}
-    />
+    <div className="h-full">
+      <Suspense
+        fallback={<div className="text-blue-400">Loading star charts...</div>}
+      >
+        <StarSystemMapClient initialSystems={systems} />
+      </Suspense>
+    </div>
   );
 }

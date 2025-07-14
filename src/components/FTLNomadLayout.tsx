@@ -701,7 +701,7 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
 
             {/* Main Content Area */}
             <motion.div
-              className="flex-1 p-4 lg:p-6 bg-black bg-opacity-30 overflow-y-auto"
+              className="flex-1 p-4 lg:p-6 bg-black bg-opacity-30 overflow-hidden flex flex-col"
               initial={{ x: hasBooted ? 0 : 400, opacity: hasBooted ? 1 : 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{
@@ -710,7 +710,7 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
               }}
             >
               <motion.div
-                className="max-w-none pb-16 lg:pb-0"
+                className="flex-1 flex flex-col min-h-0"
                 initial={{ y: hasBooted ? 0 : 20, opacity: hasBooted ? 1 : 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: hasBooted ? 0 : 1.2 }}
@@ -721,28 +721,6 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Bottom status bar */}
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-80 border-t border-blue-400 border-opacity-30 p-2 text-xs z-40"
-        initial={{ y: hasBooted ? 0 : 100, opacity: hasBooted ? 1 : 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{
-          delay: hasBooted ? 0 : 4.8,
-          duration: hasBooted ? 0 : 0.5,
-        }}
-      >
-        <div className="flex flex-col sm:flex-row justify-between text-gray-300 gap-1 sm:gap-0">
-          <span className="text-xs">
-            FTL_STATUS: Navigation Array Online | MODE: Campaign_Management
-          </span>
-          <span className="text-xs">
-            {new Date().toLocaleString()} | Jump_Coordinates:
-            {(Math.random() * 999).toFixed(0)}.
-            {(Math.random() * 999).toFixed(0)}
-          </span>
-        </div>
-      </motion.div>
     </div>
   );
 }
