@@ -7,7 +7,7 @@ export default async function StarSystemMap() {
   const systems = await getInitialSystemGrid();
 
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Suspense
         fallback={<div className="text-blue-400">Loading star charts...</div>}
       >

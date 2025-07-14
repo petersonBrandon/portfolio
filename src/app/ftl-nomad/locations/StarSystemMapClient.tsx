@@ -692,7 +692,7 @@ export default function StarSystemMapClient({ initialSystems }: Props) {
   const nonEmptySystems = systems.filter((s) => !s.isEmpty);
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col" style={{ height: "100vh" }}>
       <motion.div
         className="mb-4"
         initial={{ opacity: 0, y: -20 }}
@@ -759,8 +759,12 @@ export default function StarSystemMapClient({ initialSystems }: Props) {
         </div>
       </motion.div>
 
-      {/* Full-size map container */}
-      <div className="flex-1 relative" ref={containerRef}>
+      {/* Full-size map container - key changes here */}
+      <div
+        className="flex-1 relative"
+        ref={containerRef}
+        style={{ minHeight: "60vh" }}
+      >
         <motion.div
           className="absolute inset-0 border border-blue-400 border-opacity-30 rounded bg-black bg-opacity-20 overflow-hidden"
           initial={{ opacity: 0, scale: 0.95 }}
