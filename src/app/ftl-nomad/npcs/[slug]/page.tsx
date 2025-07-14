@@ -5,9 +5,10 @@ import NPCDetailClient from "./NPCDetailClient";
 export default async function NPCDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const npc = await getNPCBySlug(params.slug);
+  const { slug } = await params;
+  const npc = await getNPCBySlug(slug);
 
   if (!npc) {
     notFound();
