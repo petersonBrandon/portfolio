@@ -1,11 +1,15 @@
 // app/ftl-nomad/page.tsx
 import { getAllMissionLogs } from "@/lib/ftl-logs";
 import { getAllCrewMembers } from "@/lib/ftl-crew";
+import { getAllNPCs } from "@/lib/ftl-npc";
 import Link from "next/link";
 
 export default async function FTLNomadHome() {
-  const missionLogs = await getAllMissionLogs();
-  const crewMembers = await getAllCrewMembers();
+  const [missionLogs, crewMembers, npcs] = await Promise.all([
+    getAllMissionLogs(),
+    getAllCrewMembers(),
+    getAllNPCs(),
+  ]);
 
   // Get the 3 most recent missions
   const recentMissions = missionLogs.slice(0, 3);
@@ -18,6 +22,21 @@ export default async function FTLNomadHome() {
     acc[member.status] = (acc[member.status] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
+
+  // Get NPC statistics
+  const npcStats = npcs.reduce((acc, npc) => {
+    acc[npc.disposition] = (acc[npc.disposition] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  // Get recent NPCs (by first met date if available)
+  const recentNPCs = npcs
+    .filter((npc) => npc.firstMet)
+    .sort(
+      (a, b) =>
+        new Date(b.firstMet!).getTime() - new Date(a.firstMet!).getTime()
+    )
+    .slice(0, 3);
 
   return (
     <div className="space-y-6">
@@ -102,16 +121,65 @@ export default async function FTLNomadHome() {
         </div>
 
         <div className="bg-black bg-opacity-40 p-4 rounded border border-blue-400 border-opacity-30">
-          <h3 className="text-blue-400 font-bold mb-2">CONTACT NETWORK</h3>
-          <p className="text-gray-300 text-sm mb-3">
-            NPC database and faction relationships
-          </p>
-          <div className="text-yellow-400 text-xs">
-            [SYSTEM UNDER CONSTRUCTION]
-          </div>
-          <div className="text-gray-400 text-xs mt-2">
-            Contact network protocols being calibrated...
-          </div>
+          <h3 className="text-blue-400 font-bold mb-3">CONTACT NETWORK</h3>
+          {npcs.length > 0 ? (
+            <div className="space-y-2">
+              {recentNPCs.length > 0 ? (
+                <>
+                  <div className="text-xs text-gray-400 mb-2">
+                    Recent Contacts:
+                  </div>
+                  {recentNPCs.map((npc) => (
+                    <div key={npc.slug} className="text-sm">
+                      <Link
+                        href={`/ftl-nomad/npcs/${npc.slug}`}
+                        className="text-green-400 hover:text-green-300 transition-colors"
+                      >
+                        {npc.name}
+                      </Link>
+                      <div className="text-gray-400 text-xs">
+                        {npc.species} | {npc.faction}
+                      </div>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <div className="text-sm text-gray-400 mb-2">
+                  No recent contacts
+                </div>
+              )}
+              <div className="mt-2 pt-2 border-t border-gray-600">
+                <div className="text-xs text-gray-400 mb-1">
+                  Friendly: {npcStats.friendly || 0} | Neutral:{" "}
+                  {npcStats.neutral || 0}
+                  {npcStats.hostile && ` | Hostile: ${npcStats.hostile}`}
+                </div>
+                <Link
+                  href="/ftl-nomad/npcs"
+                  className="text-blue-400 hover:text-blue-300 text-xs transition-colors"
+                >
+                  → View All Contacts ({npcs.length})
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <p className="text-gray-300 text-sm mb-3">
+                NPC database and faction relationships
+              </p>
+              <div className="text-yellow-400 text-xs">
+                [NO CONTACTS LOGGED]
+              </div>
+              <div className="text-gray-400 text-xs mt-2">
+                <Link
+                  href="/ftl-nomad/npcs"
+                  className="text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  → Access Contact Database
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -151,7 +219,7 @@ export default async function FTLNomadHome() {
       {/* Campaign Statistics */}
       <div className="mt-8">
         <h2 className="text-xl text-yellow-400 mb-4">CAMPAIGN STATISTICS</h2>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-4 gap-4">
           <div className="bg-black bg-opacity-40 p-3 rounded border border-gray-600">
             <div className="text-2xl font-bold text-blue-400">
               {missionLogs.length}
@@ -171,6 +239,13 @@ export default async function FTLNomadHome() {
               {crewMembers.length}
             </div>
             <div className="text-sm text-gray-300">Total Personnel</div>
+          </div>
+
+          <div className="bg-black bg-opacity-40 p-3 rounded border border-gray-600">
+            <div className="text-2xl font-bold text-purple-400">
+              {npcs.length}
+            </div>
+            <div className="text-sm text-gray-300">Known Contacts</div>
           </div>
         </div>
       </div>
