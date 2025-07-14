@@ -1,0 +1,44 @@
+{
+  "id": "sirius",
+  "name": "Sirius",
+  "coordinates": { "q": -2, "r": 1, "s": 1 },
+  "type": "military",
+  "planets": 2,
+  "faction": "United Earth",
+  "description": "A strategically important military outpost and training ground for the United Earth Fleet. Known for its rigorous defense protocols.",
+  "threats": "Medium",
+  "resources": ["Refined Metals", "Advanced Alloys", "Energy Cells"],
+  "visited": true,
+  "lastVisit": "2387.150",
+  "population": 5000000,
+  "government": "Military Junta",
+  "economy": "Military/Industrial",
+  "defenses": "Sirius Defense Fleet, Fortified Orbital Stations",
+  "starType": "A1V Main Sequence",
+  "climate": "Arid (Sirius B)",
+  "gravity": "1.2G (Sirius A)",
+  "atmosphere": "Nitrogen-Argon (Sirius B)",
+  "pointsOfInterest": [
+    {
+      "id": "fleet-academy",
+      "name": "Sirius Fleet Academy",
+      "type": "station",
+      "description": "Primary training facility for UEN starship captains.",
+      "coordinates": "Sirius A Orbit",
+      "discovered": true,
+      "threat": "Low"
+    },
+    {
+      "id": "weapon-testing",
+      "name": "Experimental Weaponry Testing Zone",
+      "type": "anomaly",
+      "description": "Restricted area for testing new military technologies.",
+      "coordinates": "Sirius B Outer Orbit",
+      "discovered": true,
+      "threat": "High"
+    }
+  ],
+  "tradingPosts": ["Sirius Quartermaster", "Supply Depot Alpha"],
+  "jumpGates": ["Sol Gate"],
+  "notes": "Access heavily restricted. Requires high-level clearance."
+}

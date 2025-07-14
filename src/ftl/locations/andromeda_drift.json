@@ -1,0 +1,44 @@
+{
+  "id": "andromeda-drift",
+  "name": "Andromeda Drift",
+  "coordinates": { "q": 3, "r": -3, "s": 0 },
+  "type": "frontier",
+  "planets": 5,
+  "faction": "Independent",
+  "description": "A sparsely charted frontier system with untamed resources and independent settlements. Dangerous but promising.",
+  "threats": "High",
+  "resources": ["Unrefined Ore", "Exotic Gases", "Rare Flora"],
+  "visited": false,
+  "lastVisit": null,
+  "population": 50000,
+  "government": "Anarchy (Local Enclaves)",
+  "economy": "Resource Extraction/Black Market",
+  "defenses": "None (Self-defense only)",
+  "starType": "M-Class Red Dwarf",
+  "climate": "Harsh, Varied",
+  "gravity": "0.7G - 1.5G",
+  "atmosphere": "Toxic/Thin",
+  "pointsOfInterest": [
+    {
+      "id": "derelict-freighter",
+      "name": "Abandoned Freighter Wreck",
+      "type": "wreckage",
+      "description": "Remains of a freighter, rumored to hold valuable cargo.",
+      "coordinates": "Asteroid Field",
+      "discovered": false,
+      "threat": "Medium"
+    },
+    {
+      "id": "smugglers-den",
+      "name": "Smuggler's Hideout",
+      "type": "outpost",
+      "description": "Illicit trading post, dangerous but offers rare goods.",
+      "coordinates": "Hidden Moon Base",
+      "discovered": false,
+      "threat": "High"
+    }
+  ],
+  "tradingPosts": [],
+  "jumpGates": [],
+  "notes": "Proceed with extreme caution. High risk, high reward."
+}
