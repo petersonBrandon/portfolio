@@ -463,18 +463,19 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
       <AnimatePresence>
         {showInterface && (
           <motion.div
-            className="relative z-10 min-h-screen flex flex-col lg:flex-row"
+            className="relative z-10 h-screen flex flex-col lg:flex-row" // Changed from min-h-screen to h-screen
             initial={{ opacity: hasBooted ? 1 : 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: hasBooted ? 0 : 1 }}
           >
-            {/* Mobile Header */}
+            {/* Mobile Header - keep as is */}
             <motion.div
               className="lg:hidden fixed top-0 left-0 right-0 z-20 bg-black bg-opacity-80 border-b border-blue-400 border-opacity-30 p-4 flex items-center justify-between"
               initial={{ y: hasBooted ? 0 : -50, opacity: hasBooted ? 1 : 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: hasBooted ? 0 : 0.5 }}
             >
+              {/* Mobile header content stays the same */}
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
                 className="text-blue-400 hover:text-blue-300 transition-colors"
@@ -495,9 +496,9 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
               </div>
             </motion.div>
 
-            {/* Desktop Left Panel */}
+            {/* Desktop Left Panel - Fixed */}
             <motion.div
-              className="hidden lg:block w-1/3 p-4 border-r border-blue-400 border-opacity-30 bg-black bg-opacity-60 overflow-y-auto"
+              className="hidden lg:block w-1/3 h-full p-4 border-r border-blue-400 border-opacity-30 bg-black bg-opacity-60 overflow-y-auto" // Added h-full
               initial={{ x: hasBooted ? 0 : -400, opacity: hasBooted ? 1 : 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{
@@ -505,6 +506,7 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
                 delay: hasBooted ? 0 : 0.2,
               }}
             >
+              {/* All sidebar content stays exactly the same */}
               <motion.div
                 className="mb-6"
                 initial={{ y: hasBooted ? 0 : -20, opacity: hasBooted ? 1 : 0 }}
@@ -703,7 +705,7 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
 
             {/* Main Content Area */}
             <motion.div
-              className="flex-1 flex flex-col min-h-0"
+              className="flex-1 flex flex-col h-full lg:h-auto" // Added h-full for mobile, h-auto for desktop
               initial={{ x: hasBooted ? 0 : 400, opacity: hasBooted ? 1 : 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{
@@ -712,7 +714,7 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
               }}
             >
               <motion.div
-                className="flex-1 p-4 lg:pt-6 pt-20 bg-black bg-opacity-30 overflow-y-auto"
+                className="flex-1 p-4 lg:pt-6 pt-20 bg-black bg-opacity-30 overflow-y-auto" // This now scrolls independently
                 initial={{ y: hasBooted ? 0 : 20, opacity: hasBooted ? 1 : 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: hasBooted ? 0 : 1.2 }}

@@ -46,7 +46,7 @@ export function CrewMemberCard({ member }: CrewMemberCardProps) {
       <motion.div
         className={`bg-black bg-opacity-60 p-4 rounded border ${getStatusBorder(
           member.status
-        )} border-opacity-50 hover:border-opacity-80 transition-all duration-200 hover:bg-opacity-80 cursor-pointer`}
+        )} border-opacity-50 hover:border-opacity-80 transition-all duration-200 hover:bg-opacity-80 cursor-pointer h-full flex flex-col`}
         transition={{ duration: 0.3 }}
         whileHover={{ scale: 1.02 }}
       >
@@ -114,17 +114,15 @@ export function CrewMemberCard({ member }: CrewMemberCardProps) {
           </div>
         </div>
 
-        {/* Personnel record excerpt */}
-        {member.backstory && (
-          <div className="mb-3 pt-3 border-t border-blue-400 border-opacity-20">
-            <div className="text-xs text-gray-400 mb-1">PERSONNEL_RECORD:</div>
-            <p className="text-xs text-gray-300 leading-relaxed font-mono">
-              {member.backstory}
-            </p>
-          </div>
-        )}
+        {/* Personnel record excerpt - flexible height */}
+        <div className="flex-1 mb-3 pt-3 border-t border-blue-400 border-opacity-20">
+          <div className="text-xs text-gray-400 mb-1">PERSONNEL_RECORD:</div>
+          <p className="text-xs text-gray-300 leading-relaxed font-mono">
+            {member.backstory || "No personnel record available."}
+          </p>
+        </div>
 
-        {/* Service record */}
+        {/* Service record - pinned to bottom */}
         <div className="pt-2 border-t border-gray-600 border-opacity-30 text-xs text-gray-500 font-mono">
           {member.joinDate && (
             <div className="flex justify-between mb-1">
