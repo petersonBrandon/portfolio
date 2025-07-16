@@ -158,10 +158,10 @@ export default function RulesPage() {
           ENFORCEMENT_NOTICE
         </div>
         <div className="text-xs text-gray-300">
-          These parameters are enforced by the Ship's AI and monitored
+          {`These parameters are enforced by the Ship\'s AI and monitored
           continuously. For clarification on any directive, contact your
           immediate supervisor or access the CODEX database through the
-          LORE_ARCHIVE.
+          LORE_ARCHIVE.`}
         </div>
       </motion.div>
     </div>
