@@ -48,21 +48,16 @@ const navigationStructure = [
         label: ">> CODEX",
         desc: "Lore Library",
       },
-      {
-        path: "/ftl-nomad/lore/timeline",
-        label: ">> TIMELINE",
-        desc: "Universal History",
-      },
-      {
-        path: "/ftl-nomad/lore/rumors",
-        label: ">> RUMORS",
-        desc: "Intelligence Reports",
-      },
-      {
-        path: "/ftl-nomad/lore/factions",
-        label: ">> FACTIONS",
-        desc: "Faction Database",
-      },
+      // {
+      //   path: "/ftl-nomad/lore/timeline",
+      //   label: ">> TIMELINE",
+      //   desc: "Universal History",
+      // },
+      // {
+      //   path: "/ftl-nomad/lore/rumors",
+      //   label: ">> RUMORS",
+      //   desc: "Intelligence Reports",
+      // },
     ],
   },
   {
@@ -76,11 +71,11 @@ const navigationStructure = [
         label: ">> GALLERY",
         desc: "Visual Archive",
       },
-      {
-        path: "/ftl-nomad/media/music",
-        label: ">> MUSIC",
-        desc: "Audio Library",
-      },
+      // {
+      //   path: "/ftl-nomad/media/music",
+      //   label: ">> MUSIC",
+      //   desc: "Audio Library",
+      // },
     ],
   },
   {
@@ -89,11 +84,11 @@ const navigationStructure = [
     desc: "System Analytics",
     type: "folder",
     children: [
-      {
-        path: "/ftl-nomad/meta/stats",
-        label: ">> STATS",
-        desc: "Session Analytics",
-      },
+      // {
+      //   path: "/ftl-nomad/meta/stats",
+      //   label: ">> STATS",
+      //   desc: "Session Analytics",
+      // },
       {
         path: "/ftl-nomad/meta/rules",
         label: ">> RULES",
@@ -372,15 +367,12 @@ const SlidingNavigation = ({
   onLinkClick?: () => void;
 }) => {
   const [currentFolder, setCurrentFolder] = useState<string | null>(null);
-  const [direction, setDirection] = useState<"left" | "right">("right");
 
   const handleFolderClick = (folderId: string) => {
-    setDirection("right");
     setCurrentFolder(folderId);
   };
 
   const handleBack = () => {
-    setDirection("left");
     setCurrentFolder(null);
   };
 
@@ -388,114 +380,143 @@ const SlidingNavigation = ({
     (item) => item.id === currentFolder
   );
   const mainItems = navigationStructure.filter((item) => item.type === "link");
+  const folderItems = navigationStructure.filter(
+    (item) => item.type === "folder"
+  );
 
   return (
     <div className="relative overflow-hidden">
-      <AnimatePresence mode="wait">
-        {!currentFolder ? (
-          <motion.div
-            key="main"
-            initial={{
-              x: direction === "left" ? -300 : 0,
-              opacity: direction === "left" ? 0 : 1,
-            }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: direction === "right" ? -300 : 300, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            <NavigationMenu
-              items={mainItems}
-              pathname={pathname}
-              onFolderClick={handleFolderClick}
-              hasBooted={hasBooted}
-              delay={1.5}
-              onLinkClick={onLinkClick}
-            />
+      <div className="relative">
+        {/* Main Menu */}
+        <motion.div
+          className="w-full"
+          animate={{
+            x: currentFolder ? "-100%" : "0%",
+            opacity: currentFolder ? 0 : 1,
+          }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <NavigationMenu
+            items={mainItems}
+            pathname={pathname}
+            onFolderClick={handleFolderClick}
+            hasBooted={hasBooted}
+            delay={1.5}
+            onLinkClick={onLinkClick}
+          />
 
-            {/* Folder items */}
-            <div className="mt-4 space-y-1">
-              {navigationStructure
-                .filter((item) => item.type === "folder")
-                .map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{
-                      x: hasBooted ? 0 : -50,
-                      opacity: hasBooted ? 1 : 0,
-                    }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: hasBooted ? 0 : 2.0 + index * 0.1 }}
-                  >
-                    <button
-                      onClick={() => handleFolderClick(item.id!)}
-                      className="block w-full text-left p-2 rounded transition-all duration-200 hover:bg-purple-400 hover:bg-opacity-10 hover:text-purple-300 border border-transparent hover:border-purple-400 hover:border-opacity-30"
-                    >
-                      <div className="text-sm font-medium flex items-center gap-2">
-                        {item.label}
-                        <span className="text-xs text-gray-400">▶</span>
-                      </div>
-                      <div className="text-xs text-gray-400">{item.desc}</div>
-                    </button>
-                  </motion.div>
-                ))}
-            </div>
-          </motion.div>
-        ) : (
-          <motion.div
-            key={currentFolder}
-            initial={{ x: direction === "right" ? 300 : -300, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: direction === "left" ? 300 : -300, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            {/* Back button */}
-            <motion.button
-              onClick={handleBack}
-              className="block w-full text-left p-2 mb-3 rounded transition-all duration-200 hover:bg-gray-400 hover:bg-opacity-10 hover:text-gray-300 border border-gray-400 border-opacity-30 text-gray-400"
-            >
-              <div className="text-sm font-medium flex items-center gap-2">
-                <span className="text-xs">◀</span>
-                &lt;&lt; BACK
-              </div>
-              <div className="text-xs text-gray-400">Return to Main Menu</div>
-            </motion.button>
-
-            {/* Folder header */}
-            <motion.div
-              className="mb-4 pb-3 border-b border-purple-400 border-opacity-50"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="text-lg font-bold text-purple-300 mb-1">
-                {currentFolderData?.label.replace(">> ", "")}
-              </div>
-              <div className="text-xs text-gray-400 uppercase tracking-wide">
-                {currentFolderData?.desc}
-              </div>
+          {/* Folder items */}
+          <div className="mt-4 space-y-1">
+            {folderItems.map((item, index) => (
               <motion.div
-                className="mt-2 h-px bg-gradient-to-r from-purple-400 to-transparent"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-              />
-            </motion.div>
+                key={item.id}
+                initial={{
+                  x: hasBooted ? 0 : -50,
+                  opacity: hasBooted ? 1 : 0,
+                }}
+                animate={{
+                  x: 0,
+                  opacity: 1,
+                }}
+                transition={{ delay: hasBooted ? 0 : 2.0 + index * 0.1 }}
+              >
+                <button
+                  onClick={() => handleFolderClick(item.id!)}
+                  className="block w-full text-left p-2 rounded transition-all duration-200 hover:bg-purple-400 hover:bg-opacity-10 hover:text-purple-300 border border-transparent hover:border-purple-400 hover:border-opacity-30"
+                >
+                  <div className="text-sm font-medium flex items-center gap-2">
+                    {item.label}
+                    <span className="text-xs text-gray-400">▶</span>
+                  </div>
+                  <div className="text-xs text-gray-400">{item.desc}</div>
+                </button>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
-            {/* Folder contents */}
+        {/* Submenu - Card Stack Animation */}
+        <motion.div
+          className="absolute top-0 left-0 w-full"
+          initial={{
+            scale: 0.8,
+            opacity: 0,
+            transformOrigin: "center center",
+          }}
+          animate={{
+            scale: currentFolder ? 1 : 0.8,
+            opacity: currentFolder ? 1 : 0,
+            transformOrigin: "center center",
+          }}
+          transition={{
+            duration: 0.3,
+            ease: "easeOut",
+            delay: currentFolder ? 0.15 : 0,
+          }}
+        >
+          {/* Back button */}
+          <motion.button
+            onClick={handleBack}
+            className="block w-full text-left p-2 mb-3 rounded transition-all duration-200 hover:bg-gray-400 hover:bg-opacity-10 hover:text-gray-300 border border-gray-400 border-opacity-30 text-gray-400"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{
+              opacity: currentFolder ? 1 : 0,
+              y: currentFolder ? 0 : -10,
+            }}
+          >
+            <div className="text-sm font-medium flex items-center gap-2">
+              <span className="text-xs">◀</span>
+              &lt;&lt; BACK
+            </div>
+            <div className="text-xs text-gray-400">Return to Main Menu</div>
+          </motion.button>
+
+          {/* Folder header */}
+          <motion.div
+            className="mb-4 pb-3 border-b border-purple-400 border-opacity-50"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{
+              opacity: currentFolder ? 1 : 0,
+              y: currentFolder ? 0 : -10,
+            }}
+            transition={{ delay: currentFolder ? 0.35 : 0 }}
+          >
+            <div className="text-lg font-bold text-purple-300 mb-1">
+              {currentFolderData?.label.replace(">> ", "")}
+            </div>
+            <div className="text-xs text-gray-400 uppercase tracking-wide">
+              {currentFolderData?.desc}
+            </div>
+            <motion.div
+              className="mt-2 h-px bg-gradient-to-r from-purple-400 to-transparent"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: currentFolder ? 1 : 0 }}
+              transition={{ delay: currentFolder ? 0.4 : 0, duration: 0.5 }}
+            />
+          </motion.div>
+
+          {/* Folder contents */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{
+              opacity: currentFolder ? 1 : 0,
+              y: currentFolder ? 0 : 10,
+            }}
+            transition={{ delay: currentFolder ? 0.4 : 0 }}
+          >
             <NavigationMenu
               items={currentFolderData?.children || []}
               pathname={pathname}
               hasBooted={true}
-              delay={0.3}
+              delay={0}
               onLinkClick={onLinkClick}
             />
           </motion.div>
-        )}
-      </AnimatePresence>
+        </motion.div>
+      </div>
     </div>
   );
 };
-
 // Mobile Navigation Menu
 const MobileNavMenu = ({
   isOpen,
