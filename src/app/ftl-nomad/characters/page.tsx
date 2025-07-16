@@ -39,8 +39,12 @@ export default async function CrewRoster() {
                 ACTIVE PERSONNEL
               </h2>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {activeCrewMembers.map((member) => (
-                  <CrewMemberCard key={member.slug} member={member} />
+                {activeCrewMembers.map((member, index) => (
+                  <CrewMemberCard
+                    key={member.slug}
+                    member={member}
+                    index={index}
+                  />
                 ))}
               </div>
             </div>
@@ -53,8 +57,12 @@ export default async function CrewRoster() {
                 INACTIVE/MISSING PERSONNEL
               </h2>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {inactiveCrewMembers.map((member) => (
-                  <CrewMemberCard key={member.slug} member={member} />
+                {inactiveCrewMembers.map((member, index) => (
+                  <CrewMemberCard
+                    key={member.slug}
+                    member={member}
+                    index={index}
+                  />
                 ))}
               </div>
             </div>

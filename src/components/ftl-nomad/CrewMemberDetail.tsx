@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+import { customMarkdownComponents } from "@/lib/markdownComponents";
 
 interface CrewMemberDetailProps {
   member: CrewMember;
@@ -185,49 +186,7 @@ export function CrewMemberDetail({ member }: CrewMemberDetailProps) {
             </div>
 
             <div className="prose prose-invert prose-blue max-w-none">
-              <ReactMarkdown
-                components={{
-                  h1: ({ children }) => (
-                    <h1 className="text-xl font-bold text-blue-400 mb-3 font-mono border-b border-blue-400 border-opacity-30 pb-2">
-                      {children}
-                    </h1>
-                  ),
-                  h2: ({ children }) => (
-                    <h2 className="text-lg font-bold text-green-400 mb-3 font-mono border-b border-green-400 border-opacity-30 pb-1">
-                      {children}
-                    </h2>
-                  ),
-                  h3: ({ children }) => (
-                    <h3 className="text-md font-bold text-yellow-400 mb-2 font-mono">
-                      {children}
-                    </h3>
-                  ),
-                  p: ({ children }) => (
-                    <p className="text-gray-300 mb-4 leading-relaxed font-mono text-sm">
-                      {children}
-                    </p>
-                  ),
-                  ul: ({ children }) => (
-                    <ul className="text-gray-300 mb-4 ml-4 font-mono text-sm">
-                      {children}
-                    </ul>
-                  ),
-                  li: ({ children }) => (
-                    <li className="mb-1 text-gray-300">
-                      <span className="text-blue-400 mr-2">▶</span>
-                      {children}
-                    </li>
-                  ),
-                  strong: ({ children }) => (
-                    <strong className="text-blue-400 font-bold">
-                      {children}
-                    </strong>
-                  ),
-                  em: ({ children }) => (
-                    <em className="text-yellow-400 italic">{children}</em>
-                  ),
-                }}
-              >
+              <ReactMarkdown components={customMarkdownComponents}>
                 {member.notes}
               </ReactMarkdown>
             </div>

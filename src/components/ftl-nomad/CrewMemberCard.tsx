@@ -8,6 +8,7 @@ import Image from "next/image";
 
 interface CrewMemberCardProps {
   member: CrewMember;
+  index?: number; // Add index prop for staggered animation
 }
 
 const getStatusColor = (status: string) => {
@@ -40,14 +41,20 @@ const getStatusBorder = (status: string) => {
   }
 };
 
-export function CrewMemberCard({ member }: CrewMemberCardProps) {
+export function CrewMemberCard({ member, index = 0 }: CrewMemberCardProps) {
   return (
     <Link href={`/ftl-nomad/characters/${member.slug}`}>
       <motion.div
         className={`bg-black bg-opacity-60 p-4 rounded border ${getStatusBorder(
           member.status
         )} border-opacity-50 hover:border-opacity-80 transition-all duration-200 hover:bg-opacity-80 cursor-pointer h-full flex flex-col`}
-        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          duration: 0.5,
+          delay: index * 0.1,
+          ease: "easeOut",
+        }}
         whileHover={{ scale: 1.02 }}
       >
         {/* Header with status indicator */}

@@ -6,6 +6,8 @@ import { type NPC } from "@/lib/ftl-npc";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, MapPin, Users, Tag, Clock, Calendar } from "lucide-react";
+import { customMarkdownComponents } from "@/lib/markdownComponents";
+import ReactMarkdown from "react-markdown";
 
 const DispositionBadge = ({ disposition }: { disposition: string }) => {
   const colors = {
@@ -192,7 +194,6 @@ export default function NPCDetailClient({ npc }: { npc: NPC }) {
             <div className="flex space-x-1">
               {[
                 { key: "overview", label: "Overview" },
-                { key: "notes", label: "Notes" },
                 { key: "relationships", label: "Relationships" },
               ].map((tab) => (
                 <button
@@ -223,34 +224,10 @@ export default function NPCDetailClient({ npc }: { npc: NPC }) {
                 </h3>
                 <div className="prose prose-invert max-w-none">
                   <p className="text-gray-300 leading-relaxed mb-4">
-                    {npc.description}
+                    <ReactMarkdown components={customMarkdownComponents}>
+                      {npc.notes}
+                    </ReactMarkdown>
                   </p>
-                  {npc.notes && (
-                    <div className="text-gray-300 leading-relaxed">
-                      {npc.notes.split("\n").map((line, index) => (
-                        <p key={index} className="mb-2">
-                          {line}
-                        </p>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            )}
-
-            {activeTab === "notes" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <h3 className="text-xl font-semibold text-blue-200 mb-4">
-                  Personal Notes
-                </h3>
-                <div className="prose prose-invert max-w-none">
-                  <div className="text-gray-300 leading-relaxed whitespace-pre-wrap">
-                    {npc.notes || "No notes recorded for this contact."}
-                  </div>
                 </div>
               </motion.div>
             )}

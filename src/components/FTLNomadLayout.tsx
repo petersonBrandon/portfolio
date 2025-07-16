@@ -6,6 +6,98 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
+const navigationStructure = [
+  {
+    path: "/ftl-nomad",
+    label: ">> MAIN_CONSOLE",
+    desc: "Ship Command Center",
+    type: "link",
+  },
+  {
+    path: "/ftl-nomad/adventure-logs",
+    label: ">> MISSION_LOGS",
+    desc: "Adventure Archives",
+    type: "link",
+  },
+  {
+    path: "/ftl-nomad/characters",
+    label: ">> CREW_ROSTER",
+    desc: "Character Database",
+    type: "link",
+  },
+  {
+    path: "/ftl-nomad/npcs",
+    label: ">> CONTACT_NET",
+    desc: "NPC Registry",
+    type: "link",
+  },
+  {
+    path: "/ftl-nomad/locations",
+    label: ">> STAR_CHARTS",
+    desc: "Location Database",
+    type: "link",
+  },
+  {
+    id: "lore",
+    label: ">> LORE_ARCHIVE",
+    desc: "Knowledge Database",
+    type: "folder",
+    children: [
+      {
+        path: "/ftl-nomad/lore/codex",
+        label: ">> CODEX",
+        desc: "Lore Library",
+      },
+      // {
+      //   path: "/ftl-nomad/lore/timeline",
+      //   label: ">> TIMELINE",
+      //   desc: "Universal History",
+      // },
+      // {
+      //   path: "/ftl-nomad/lore/rumors",
+      //   label: ">> RUMORS",
+      //   desc: "Intelligence Reports",
+      // },
+    ],
+  },
+  {
+    id: "media",
+    label: ">> MEDIA_BANK",
+    desc: "Multimedia Archive",
+    type: "folder",
+    children: [
+      {
+        path: "/ftl-nomad/media/gallery",
+        label: ">> GALLERY",
+        desc: "Visual Archive",
+      },
+      // {
+      //   path: "/ftl-nomad/media/music",
+      //   label: ">> MUSIC",
+      //   desc: "Audio Library",
+      // },
+    ],
+  },
+  {
+    id: "meta",
+    label: ">> META_DATA",
+    desc: "System Analytics",
+    type: "folder",
+    children: [
+      // {
+      //   path: "/ftl-nomad/meta/stats",
+      //   label: ">> STATS",
+      //   desc: "Session Analytics",
+      // },
+      {
+        path: "/ftl-nomad/meta/rules",
+        label: ">> RULES",
+        desc: "Game Parameters",
+      },
+    ],
+  },
+];
+
 const StarField = () => {
   const [stars, setStars] = useState<{ x: number; y: number; size: number }[]>(
     []
@@ -207,19 +299,235 @@ const NomadStatusIndicator = ({
   );
 };
 
+const NavigationMenu = ({
+  items,
+  pathname,
+  onFolderClick,
+  hasBooted,
+  delay = 0,
+  onLinkClick,
+}: {
+  items: any[];
+  pathname: string;
+  onFolderClick?: (folderId: string) => void;
+  hasBooted: boolean;
+  delay?: number;
+  onLinkClick?: () => void;
+}) => {
+  return (
+    <div className="space-y-1">
+      {items.map((item, index) => (
+        <motion.div
+          key={item.path || item.id}
+          initial={{
+            x: hasBooted ? 0 : -50,
+            opacity: hasBooted ? 1 : 0,
+          }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: hasBooted ? 0 : delay + index * 0.1 }}
+        >
+          {item.type === "folder" ? (
+            <button
+              onClick={() => onFolderClick?.(item.id)}
+              className="block w-full text-left p-2 rounded transition-all duration-200 hover:bg-purple-400 hover:bg-opacity-10 hover:text-purple-300 border border-transparent hover:border-purple-400 hover:border-opacity-30"
+            >
+              <div className="text-sm font-medium flex items-center gap-2">
+                {item.label}
+                <span className="text-xs text-gray-400">▶</span>
+              </div>
+              <div className="text-xs text-gray-400">{item.desc}</div>
+            </button>
+          ) : (
+            <Link
+              href={item.path}
+              onClick={onLinkClick}
+              className={`block w-full text-left p-2 rounded transition-all duration-200 hover:bg-blue-400 hover:bg-opacity-10 hover:text-blue-300 border border-transparent hover:border-blue-400 hover:border-opacity-30 ${
+                pathname === item.path
+                  ? "bg-blue-400 bg-opacity-20 text-blue-300 border-blue-400 border-opacity-50"
+                  : ""
+              }`}
+            >
+              <div className="text-sm font-medium">{item.label}</div>
+              <div className="text-xs text-gray-400">{item.desc}</div>
+            </Link>
+          )}
+        </motion.div>
+      ))}
+    </div>
+  );
+};
+
+const SlidingNavigation = ({
+  pathname,
+  hasBooted,
+  onLinkClick,
+}: {
+  pathname: string;
+  hasBooted: boolean;
+  onLinkClick?: () => void;
+}) => {
+  const [currentFolder, setCurrentFolder] = useState<string | null>(null);
+
+  const handleFolderClick = (folderId: string) => {
+    setCurrentFolder(folderId);
+  };
+
+  const handleBack = () => {
+    setCurrentFolder(null);
+  };
+
+  const currentFolderData = navigationStructure.find(
+    (item) => item.id === currentFolder
+  );
+  const mainItems = navigationStructure.filter((item) => item.type === "link");
+  const folderItems = navigationStructure.filter(
+    (item) => item.type === "folder"
+  );
+
+  return (
+    <div className="relative overflow-hidden">
+      <div className="relative">
+        {/* Main Menu */}
+        <motion.div
+          className="w-full"
+          animate={{
+            x: currentFolder ? "-100%" : "0%",
+            opacity: currentFolder ? 0 : 1,
+          }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <NavigationMenu
+            items={mainItems}
+            pathname={pathname}
+            onFolderClick={handleFolderClick}
+            hasBooted={hasBooted}
+            delay={1.5}
+            onLinkClick={onLinkClick}
+          />
+
+          {/* Folder items */}
+          <div className="mt-4 space-y-1">
+            {folderItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{
+                  x: hasBooted ? 0 : -50,
+                  opacity: hasBooted ? 1 : 0,
+                }}
+                animate={{
+                  x: 0,
+                  opacity: 1,
+                }}
+                transition={{ delay: hasBooted ? 0 : 2.0 + index * 0.1 }}
+              >
+                <button
+                  onClick={() => handleFolderClick(item.id!)}
+                  className="block w-full text-left p-2 rounded transition-all duration-200 hover:bg-purple-400 hover:bg-opacity-10 hover:text-purple-300 border border-transparent hover:border-purple-400 hover:border-opacity-30"
+                >
+                  <div className="text-sm font-medium flex items-center gap-2">
+                    {item.label}
+                    <span className="text-xs text-gray-400">▶</span>
+                  </div>
+                  <div className="text-xs text-gray-400">{item.desc}</div>
+                </button>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Submenu - Card Stack Animation */}
+        <motion.div
+          className="absolute top-0 left-0 w-full"
+          initial={{
+            scale: 0.8,
+            opacity: 0,
+            transformOrigin: "center center",
+          }}
+          animate={{
+            scale: currentFolder ? 1 : 0.8,
+            opacity: currentFolder ? 1 : 0,
+            transformOrigin: "center center",
+          }}
+          transition={{
+            duration: 0.3,
+            ease: "easeOut",
+            delay: currentFolder ? 0.15 : 0,
+          }}
+        >
+          {/* Back button */}
+          <motion.button
+            onClick={handleBack}
+            className="block w-full text-left p-2 mb-3 rounded transition-all duration-200 hover:bg-gray-400 hover:bg-opacity-10 hover:text-gray-300 border border-gray-400 border-opacity-30 text-gray-400"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{
+              opacity: currentFolder ? 1 : 0,
+              y: currentFolder ? 0 : -10,
+            }}
+          >
+            <div className="text-sm font-medium flex items-center gap-2">
+              <span className="text-xs">◀</span>
+              &lt;&lt; BACK
+            </div>
+            <div className="text-xs text-gray-400">Return to Main Menu</div>
+          </motion.button>
+
+          {/* Folder header */}
+          <motion.div
+            className="mb-4 pb-3 border-b border-purple-400 border-opacity-50"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{
+              opacity: currentFolder ? 1 : 0,
+              y: currentFolder ? 0 : -10,
+            }}
+            transition={{ delay: currentFolder ? 0.35 : 0 }}
+          >
+            <div className="text-lg font-bold text-purple-300 mb-1">
+              {currentFolderData?.label.replace(">> ", "")}
+            </div>
+            <div className="text-xs text-gray-400 uppercase tracking-wide">
+              {currentFolderData?.desc}
+            </div>
+            <motion.div
+              className="mt-2 h-px bg-gradient-to-r from-purple-400 to-transparent"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: currentFolder ? 1 : 0 }}
+              transition={{ delay: currentFolder ? 0.4 : 0, duration: 0.5 }}
+            />
+          </motion.div>
+
+          {/* Folder contents */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{
+              opacity: currentFolder ? 1 : 0,
+              y: currentFolder ? 0 : 10,
+            }}
+            transition={{ delay: currentFolder ? 0.4 : 0 }}
+          >
+            <NavigationMenu
+              items={currentFolderData?.children || []}
+              pathname={pathname}
+              hasBooted={true}
+              delay={0}
+              onLinkClick={onLinkClick}
+            />
+          </motion.div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
 // Mobile Navigation Menu
 const MobileNavMenu = ({
   isOpen,
   onClose,
   pathname,
-  menuItems,
   jumpDriveStatus,
   hasBooted,
 }: {
   isOpen: boolean;
   onClose: () => void;
   pathname: string;
-  menuItems: any[];
   jumpDriveStatus: string;
   hasBooted: boolean;
 }) => {
@@ -227,7 +535,6 @@ const MobileNavMenu = ({
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             className="fixed inset-0 bg-black bg-opacity-50 z-40"
             initial={{ opacity: 0 }}
@@ -236,7 +543,6 @@ const MobileNavMenu = ({
             onClick={onClose}
           />
 
-          {/* Mobile Navigation Panel */}
           <motion.div
             className="fixed inset-y-0 left-0 w-4/5 max-w-sm bg-black bg-opacity-95 border-r border-blue-400 border-opacity-30 z-50 overflow-y-auto"
             initial={{ x: "-100%" }}
@@ -245,7 +551,6 @@ const MobileNavMenu = ({
             transition={{ type: "spring", damping: 25 }}
           >
             <div className="p-4">
-              {/* Header */}
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-2">
                   <div className="text-blue-400 text-lg font-bold">
@@ -264,44 +569,40 @@ const MobileNavMenu = ({
                 <div className="h-px bg-gradient-to-r from-blue-400 to-transparent" />
               </div>
 
-              {/* Navigation Items */}
               <div className="mb-6">
                 <div className="text-yellow-400 text-sm mb-3">
                   NAVIGATION_ARRAY:
                 </div>
-                <div className="space-y-2">
-                  {menuItems.map((item, index) => (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      onClick={onClose}
-                      className={`block w-full text-left p-3 rounded transition-all duration-200 hover:bg-blue-400 hover:bg-opacity-10 hover:text-blue-300 border border-transparent hover:border-blue-400 hover:border-opacity-30 ${
-                        pathname === item.path
-                          ? "bg-blue-400 bg-opacity-20 text-blue-300 border-blue-400 border-opacity-50"
-                          : ""
-                      }`}
-                    >
-                      <div className="text-sm font-medium">{item.label}</div>
-                      <div className="text-xs text-gray-400">{item.desc}</div>
-                    </Link>
-                  ))}
-                </div>
+                <SlidingNavigation
+                  pathname={pathname}
+                  hasBooted={hasBooted}
+                  onLinkClick={onClose}
+                />
 
-                <Link
-                  href="/"
-                  onClick={onClose}
-                  className="block w-full text-left p-3 mt-4 rounded transition-all duration-200 hover:bg-red-400 hover:bg-opacity-10 hover:text-red-300 border border-red-400 border-opacity-30 text-red-400"
+                <motion.div
+                  initial={{
+                    x: hasBooted ? 0 : -50,
+                    opacity: hasBooted ? 1 : 0,
+                  }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: hasBooted ? 0 : 2.5 }}
                 >
-                  <div className="text-sm font-medium">
-                    &lt;&lt; EXIT_TO_MAIN
-                  </div>
-                  <div className="text-xs text-gray-400">
-                    Return to Quantum OS
-                  </div>
-                </Link>
+                  <Link
+                    href="/"
+                    onClick={onClose}
+                    className="block w-full text-left p-2 mt-4 rounded transition-all duration-200 hover:bg-red-400 hover:bg-opacity-10 hover:text-red-300 border border-red-400 border-opacity-30 text-red-400"
+                  >
+                    <div className="text-sm font-medium">
+                      &lt;&lt; EXIT_TO_MAIN
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      Return to Quantum OS
+                    </div>
+                  </Link>
+                </motion.div>
               </div>
 
-              {/* Ship Status */}
+              {/* Ship Status section remains the same */}
               <div className="text-xs">
                 <div className="text-yellow-400 mb-2">SHIP_STATUS:</div>
                 <div className="bg-black bg-opacity-40 p-3 rounded border border-gray-600">
@@ -373,36 +674,6 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
     return false;
   });
 
-  const menuItems = [
-    {
-      path: "/ftl-nomad",
-      label: ">> MAIN_CONSOLE",
-      desc: "Ship Command Center",
-    },
-    {
-      path: "/ftl-nomad/adventure-logs",
-      label: ">> MISSION_LOGS",
-      desc: "Adventure Archives",
-    },
-    {
-      path: "/ftl-nomad/characters",
-      label: ">> CREW_ROSTER",
-      desc: "Character Database",
-    },
-    { path: "/ftl-nomad/npcs", label: ">> CONTACT_NET", desc: "NPC Registry" },
-    {
-      path: "/ftl-nomad/locations",
-      label: ">> STAR_CHARTS",
-      desc: "Location Database",
-    },
-    {
-      path: "/ftl-nomad/equipment",
-      label: ">> CARGO_MANIFEST",
-      desc: "Equipment Tracker",
-    },
-    { path: "/ftl-nomad/ships", label: ">> FLEET_DATA", desc: "Ship Registry" },
-  ];
-
   useEffect(() => {
     const statuses = ["READY", "CHARGING", "COOLDOWN", "MAINTENANCE"];
     const interval = setInterval(() => {
@@ -455,7 +726,6 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
         pathname={pathname}
-        menuItems={menuItems}
         jumpDriveStatus={jumpDriveStatus}
         hasBooted={hasBooted}
       />
@@ -463,19 +733,18 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
       <AnimatePresence>
         {showInterface && (
           <motion.div
-            className="relative z-10 h-screen flex flex-col lg:flex-row" // Changed from min-h-screen to h-screen
+            className="relative z-10 h-screen flex flex-col lg:flex-row"
             initial={{ opacity: hasBooted ? 1 : 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: hasBooted ? 0 : 1 }}
           >
-            {/* Mobile Header - keep as is */}
+            {/* Mobile Header*/}
             <motion.div
               className="lg:hidden fixed top-0 left-0 right-0 z-20 bg-black bg-opacity-80 border-b border-blue-400 border-opacity-30 p-4 flex items-center justify-between"
               initial={{ y: hasBooted ? 0 : -50, opacity: hasBooted ? 1 : 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: hasBooted ? 0 : 0.5 }}
             >
-              {/* Mobile header content stays the same */}
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
                 className="text-blue-400 hover:text-blue-300 transition-colors"
@@ -506,7 +775,6 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
                 delay: hasBooted ? 0 : 0.2,
               }}
             >
-              {/* All sidebar content stays exactly the same */}
               <motion.div
                 className="mb-6"
                 initial={{ y: hasBooted ? 0 : -20, opacity: hasBooted ? 1 : 0 }}
@@ -548,31 +816,8 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
                     }}
                   />
                 </motion.div>
-                <div className="space-y-1">
-                  {menuItems.map((item, index) => (
-                    <motion.div
-                      key={item.path}
-                      initial={{
-                        x: hasBooted ? 0 : -50,
-                        opacity: hasBooted ? 1 : 0,
-                      }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: hasBooted ? 0 : 1.5 + index * 0.1 }}
-                    >
-                      <Link
-                        href={item.path}
-                        className={`block w-full text-left p-2 rounded transition-all duration-200 hover:bg-blue-400 hover:bg-opacity-10 hover:text-blue-300 border border-transparent hover:border-blue-400 hover:border-opacity-30 ${
-                          pathname === item.path
-                            ? "bg-blue-400 bg-opacity-20 text-blue-300 border-blue-400 border-opacity-50"
-                            : ""
-                        }`}
-                      >
-                        <div className="text-sm font-medium">{item.label}</div>
-                        <div className="text-xs text-gray-400">{item.desc}</div>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
+
+                <SlidingNavigation pathname={pathname} hasBooted={hasBooted} />
 
                 <motion.div
                   initial={{

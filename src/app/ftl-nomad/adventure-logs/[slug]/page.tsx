@@ -3,6 +3,7 @@ import { getMissionLogBySlug, getAllMissionLogs } from "@/lib/ftl-logs";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import { customMarkdownComponents } from "@/lib/markdownComponents";
 
 export async function generateStaticParams() {
   const logs = await getAllMissionLogs();
@@ -66,34 +67,7 @@ export default async function MissionLogDetail({ params }: Props) {
 
       <div className="bg-black bg-opacity-40 p-6 rounded border border-blue-400 border-opacity-30">
         <div className="prose prose-invert prose-blue max-w-none">
-          <ReactMarkdown
-            components={{
-              h1: ({ children }) => (
-                <h1 className="text-2xl font-bold text-blue-400 mb-4 mt-6">
-                  {children}
-                </h1>
-              ),
-              h2: ({ children }) => (
-                <h2 className="text-xl font-bold text-blue-300 mb-3 mt-5">
-                  {children}
-                </h2>
-              ),
-              h3: ({ children }) => (
-                <h3 className="text-lg font-bold text-blue-200 mb-2 mt-4">
-                  {children}
-                </h3>
-              ),
-              p: ({ children }) => (
-                <p className="text-gray-300 mb-4 leading-relaxed">{children}</p>
-              ),
-              strong: ({ children }) => (
-                <strong className="text-blue-400 font-bold">{children}</strong>
-              ),
-              em: ({ children }) => (
-                <em className="text-blue-300 italic">{children}</em>
-              ),
-            }}
-          >
+          <ReactMarkdown components={customMarkdownComponents}>
             {log.content}
           </ReactMarkdown>
         </div>
