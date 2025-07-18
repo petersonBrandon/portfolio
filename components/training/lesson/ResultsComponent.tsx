@@ -65,12 +65,12 @@ export default function ResultsComponent({
 
           {results.percentage === 100 && (
             <p className="text-green-600 font-medium">
-              🎉 Perfect score! You've mastered this topic!
+              {`🎉 Perfect score! You\'ve mastered this topic!`}
             </p>
           )}
           {results.percentage >= 70 && results.percentage < 100 && (
             <p className="text-yellow-600 font-medium">
-              👍 Good job! You're ready to move on.
+              {`👍 Good job! You\'re ready to move on.`}
             </p>
           )}
           {results.percentage < 70 && (

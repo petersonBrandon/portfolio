@@ -96,7 +96,7 @@ export default function InstallingGitLesson({
 
       <div className="bg-gray-100 border-2 border-black p-6">
         <h3 className="font-black text-lg uppercase tracking-wider mb-4">
-          What You'll Learn
+          {`What You\'ll Learn`}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white border-2 border-gray-300 p-4">
@@ -526,7 +526,7 @@ export default function InstallingGitLesson({
               git --help
             </div>
             <p className="text-xs text-gray-600">
-              Should display Git's help information and available commands
+              {`Should display Git\'s help information and available commands`}
             </p>
           </div>
 
@@ -538,7 +538,7 @@ export default function InstallingGitLesson({
               git status
             </div>
             <p className="text-xs text-gray-600">
-              Should show "not a git repository" message (this is normal)
+              {`Should show \"not a git repository\" message (this is normal)`}
             </p>
           </div>
         </div>

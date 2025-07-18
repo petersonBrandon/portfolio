@@ -84,16 +84,16 @@ export default function WhatIsVersionControlLesson({
           </h3>
         </div>
         <p className="text-gray-700 mb-4">
-          Imagine you're working on a school project - a 50-page research paper.
-          You've been working on it for weeks, and you're terrified of losing
-          your work.
+          {`Imagine you\'re working on a school project - a 50-page research paper.
+          You\'ve been working on it for weeks, and you\'re terrified of losing
+          your work.`}
         </p>
         <InteractiveFileExample />
       </div>
 
       <div className="bg-gray-100 border-2 border-black p-6">
         <h3 className="font-black text-lg uppercase tracking-wider mb-4">
-          What You'll Learn
+          {`What You\'ll Learn`}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-white border-2 border-gray-300 p-4">

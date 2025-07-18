@@ -95,10 +95,10 @@ export default function AboutPage() {
           </div>
         </div>
         <p className="text-white text-lg font-bold leading-relaxed">
-          Our mission is simple: make quality technical education accessible to
+          {`Our mission is simple: make quality technical education accessible to
           everyone, regardless of background or financial situation. Whether
-          you're a middle schooler curious about coding or a high schooler
-          planning your future, we're here to help you learn and grow.
+          you\'re a middle schooler curious about coding or a high schooler
+          planning your future, we\'re here to help you learn and grow.`}
         </p>
       </motion.div>
 
@@ -146,7 +146,7 @@ export default function AboutPage() {
               <li className="flex items-start">
                 <Star className="h-5 w-5 text-cyan-400 mr-2 mt-0.5 flex-shrink-0" />
                 <span className="text-gray-700 font-bold">
-                  Age-appropriate explanations that don't talk down to learners
+                  {`Age-appropriate explanations that don\'t talk down to learners`}
                 </span>
               </li>
               <li className="flex items-start">

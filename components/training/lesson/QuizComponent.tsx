@@ -154,7 +154,7 @@ export default function QuizComponent({
                 </p>
                 {getDetailedResults().score === questions.length && (
                   <p className="text-sm text-green-600 mt-2">
-                    🎉 Perfect! You're ready for the next lesson!
+                    {`🎉 Perfect! You\'re ready for the next lesson!`}
                   </p>
                 )}
               </div>

@@ -68,10 +68,10 @@ export default function CourseOverviewLesson({
           </h3>
         </div>
         <p className="text-gray-700 mb-4">
-          This comprehensive course will take you through 10 modules covering
+          {`This comprehensive course will take you through 10 modules covering
           everything from Git basics to advanced workflows and real-world
-          scenarios. You'll learn through hands-on exercises and interactive
-          challenges.
+          scenarios. You\'ll learn through hands-on exercises and interactive
+          challenges.`}
         </p>
         <CourseGoalsComponent />
       </div>
@@ -138,7 +138,7 @@ export default function CourseOverviewLesson({
     return (
       <div className="mt-6">
         <h4 className="font-bold text-sm uppercase tracking-wider mb-4">
-          What You'll Achieve
+          {`What You\'ll Achieve`}
         </h4>
         <div className="space-y-3">
           {goals.map((goal, index) => (
@@ -490,7 +490,7 @@ export default function CourseOverviewLesson({
                 </li>
                 <li className="flex items-start">
                   <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5" />
-                  Don't skip the quizzes
+                  {`Don\'t skip the quizzes`}
                 </li>
               </ul>
             </div>

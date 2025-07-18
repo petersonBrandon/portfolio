@@ -24,22 +24,6 @@ export default function CourseNavigationSidebar({
     return currentModule ? new Set([currentModule.slug]) : new Set();
   });
 
-  // Helper function to check if a module is completed
-  const isModuleCompleted = (moduleSlug: string) => {
-    const module = courseStructure.modules.find((m) => m.slug === moduleSlug);
-    if (!module) return false;
-
-    // Check if user has progressed beyond this module
-    const currentModuleIndex = courseStructure.modules.findIndex((m) =>
-      m.lessons.some((lesson) => currentPath.includes(lesson.slug))
-    );
-    const thisModuleIndex = courseStructure.modules.findIndex(
-      (m) => m.slug === moduleSlug
-    );
-
-    return currentModuleIndex > thisModuleIndex;
-  };
-
   // Helper function to get the next module that should be opened
   const getNextModuleToOpen = () => {
     const currentModuleIndex = courseStructure.modules.findIndex((module) =>
