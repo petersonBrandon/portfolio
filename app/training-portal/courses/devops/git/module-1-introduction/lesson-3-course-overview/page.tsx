@@ -534,7 +534,7 @@ export default function CourseOverviewLesson({
       }}
       isLessonComplete={completed}
       onContinue={
-        "/training-portal/courses/devops/git/module-1-introduction/lesson-4-installing-git"
+        "/training-portal/courses/devops/git/module-2-getting-started/lesson-1-installing-git"
       }
       completionMessage={
         "Excellent! You're now ready to dive into your Git learning journey. Let's start with installing Git!"

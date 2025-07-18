@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -23,6 +23,54 @@ export default function CourseNavigationSidebar({
     );
     return currentModule ? new Set([currentModule.slug]) : new Set();
   });
+
+  // Helper function to check if a module is completed
+  const isModuleCompleted = (moduleSlug: string) => {
+    const module = courseStructure.modules.find((m) => m.slug === moduleSlug);
+    if (!module) return false;
+
+    // Check if user has progressed beyond this module
+    const currentModuleIndex = courseStructure.modules.findIndex((m) =>
+      m.lessons.some((lesson) => currentPath.includes(lesson.slug))
+    );
+    const thisModuleIndex = courseStructure.modules.findIndex(
+      (m) => m.slug === moduleSlug
+    );
+
+    return currentModuleIndex > thisModuleIndex;
+  };
+
+  // Helper function to get the next module that should be opened
+  const getNextModuleToOpen = () => {
+    const currentModuleIndex = courseStructure.modules.findIndex((module) =>
+      module.lessons.some((lesson) => currentPath.includes(lesson.slug))
+    );
+
+    if (currentModuleIndex === -1) return null;
+
+    // Return current module
+    return courseStructure.modules[currentModuleIndex]?.slug || null;
+  };
+
+  // Effect to handle module expansion based on completion
+  useEffect(() => {
+    const nextModuleSlug = getNextModuleToOpen();
+    if (!nextModuleSlug) return;
+
+    setExpandedModules((prev) => {
+      const newSet = new Set<string>();
+
+      // Close completed modules and open the current one
+      courseStructure.modules.forEach((module) => {
+        if (module.slug === nextModuleSlug) {
+          newSet.add(module.slug);
+        }
+        // Don't add completed modules to the set (they stay closed)
+      });
+
+      return newSet;
+    });
+  }, [currentPath, courseStructure]);
 
   const toggleModule = (moduleSlug: string) => {
     setExpandedModules((prev) => {
