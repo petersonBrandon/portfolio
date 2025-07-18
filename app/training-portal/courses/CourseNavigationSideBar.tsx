@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
@@ -8,13 +9,13 @@ import { CourseStructure } from "../../../lib/training/getCourseStructure";
 
 interface CourseNavigationSidebarProps {
   courseStructure: CourseStructure;
-  currentPath: string;
 }
 
 export default function CourseNavigationSidebar({
   courseStructure,
-  currentPath,
 }: CourseNavigationSidebarProps) {
+  const currentPath = usePathname();
+
   const [expandedModules, setExpandedModules] = useState<Set<string>>(() => {
     // Auto-expand module containing current lesson
     const currentModule = courseStructure.modules.find((module) =>
@@ -35,15 +36,17 @@ export default function CourseNavigationSidebar({
     });
   };
 
-  const isLessonActive = (lessonPath: string) => currentPath === lessonPath;
+  const isLessonActive = (lessonPath: string) => {
+    return currentPath === lessonPath;
+  };
 
   return (
     <motion.aside
       initial={{ x: -20, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      className="w-80 bg-white border-r-4 border-black min-h-[calc(100vh-4rem)] overflow-y-auto"
+      className="w-80 bg-white border-r-4 border-black flex-shrink-0 overflow-y-auto"
     >
-      <nav className="p-6">
+      <nav className="p-6 h-full">
         <div className="mb-6">
           <div className="bg-gray-100 border-2 border-black p-4">
             <h2 className="font-black text-sm uppercase tracking-wider text-gray-800 mb-2">

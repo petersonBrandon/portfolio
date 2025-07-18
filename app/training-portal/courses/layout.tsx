@@ -20,8 +20,6 @@ export default async function CourseLayout({ children }: CourseLayoutProps) {
   // Try multiple ways to get the pathname
   const pathname = headersList.get("x-url") || "";
 
-  console.log(pathname);
-
   const courseInfo = detectCourseFromPath(pathname);
 
   if (!courseInfo) {
@@ -50,13 +48,10 @@ export default async function CourseLayout({ children }: CourseLayoutProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="h-screen bg-gray-100 flex flex-col">
       <AnimatedHeader courseStructure={courseStructure} />
-      <div className="flex">
-        <CourseNavigationSidebar
-          courseStructure={courseStructure}
-          currentPath={pathname}
-        />
+      <div className="flex flex-1 overflow-hidden">
+        <CourseNavigationSidebar courseStructure={courseStructure} />
         <AnimatedMain>{children}</AnimatedMain>
       </div>
     </div>
