@@ -1,6 +1,7 @@
 // app/api/lore/category/route.ts
-import { getLoreEntriesByCategory } from "@/lib/lore/ftl-lore";
+
 import { NextResponse } from "next/server";
+import { getLoreEntriesByCategory } from "../../../../lib/lore/ftl-lore";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

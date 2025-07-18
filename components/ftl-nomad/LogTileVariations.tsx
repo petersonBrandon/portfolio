@@ -1,6 +1,6 @@
 // components/ftl-nomad/LogTileVariations.tsx
 import Link from "next/link";
-import { MissionLog } from "@/lib/ftl-logs";
+import { MissionLog } from "../../lib/ftl-logs";
 
 interface LogTileProps {
   log: MissionLog;

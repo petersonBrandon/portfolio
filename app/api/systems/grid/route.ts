@@ -1,6 +1,6 @@
 // app/api/systems/grid/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { getSystemGridForViewport } from "@/lib/ftl-systems";
+import { getSystemGridForViewport } from "../../../../lib/ftl-systems";
 
 export async function POST(request: NextRequest) {
   try {

@@ -1,12 +1,12 @@
 // components/ftl-nomad/CrewMemberDetail.tsx
 "use client";
 
-import { CrewMember } from "@/lib/ftl-crew";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import { customMarkdownComponents } from "@/lib/markdownComponents";
+import { CrewMember } from "../../lib/ftl-crew";
+import { customMarkdownComponents } from "../../lib/markdownComponents";
 
 interface CrewMemberDetailProps {
   member: CrewMember;

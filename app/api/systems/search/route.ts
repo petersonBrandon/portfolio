@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { searchSystems } from "@/lib/ftl-systems";
+import { searchSystems } from "../../../../lib/ftl-systems";
 
 export async function POST(request: NextRequest) {
   try {

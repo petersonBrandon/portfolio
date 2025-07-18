@@ -1,10 +1,10 @@
 // components/ftl-nomad/CrewMemberCard.tsx
 "use client";
 
-import { CrewMember } from "@/lib/ftl-crew";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { CrewMember } from "../../lib/ftl-crew";
 
 interface CrewMemberCardProps {
   member: CrewMember;
