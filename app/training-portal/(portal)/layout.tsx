@@ -40,7 +40,7 @@ export default function TrainingPortalLayout({
                 <BookOpen className="h-8 w-8 text-black" />
               </div>
               <span className="ml-4 text-xl font-black text-white uppercase tracking-wider">
-                Training Portal
+                Libre Training
               </span>
             </div>
           </div>

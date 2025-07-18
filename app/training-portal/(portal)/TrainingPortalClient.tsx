@@ -23,28 +23,28 @@ export default function TrainingPortalClient({
 }: TrainingPortalClientProps) {
   const featuredCourses = courses.slice(0, 3);
 
-  const categories = [
-    {
-      name: "Frontend",
-      count: courses.filter((c) => c.category === "frontend").length,
-      icon: BookOpen,
-    },
-    {
-      name: "Backend",
-      count: courses.filter((c) => c.category === "backend").length,
-      icon: Target,
-    },
-    {
-      name: "DevOps",
-      count: courses.filter((c) => c.category === "devops").length,
-      icon: Zap,
-    },
-    {
-      name: "Best Practices",
-      count: courses.filter((c) => c.category === "best-practices").length,
-      icon: Award,
-    },
-  ];
+  // const categories = [
+  //   {
+  //     name: "Frontend",
+  //     count: courses.filter((c) => c.category === "frontend").length,
+  //     icon: BookOpen,
+  //   },
+  //   {
+  //     name: "Backend",
+  //     count: courses.filter((c) => c.category === "backend").length,
+  //     icon: Target,
+  //   },
+  //   {
+  //     name: "DevOps",
+  //     count: courses.filter((c) => c.category === "devops").length,
+  //     icon: Zap,
+  //   },
+  //   {
+  //     name: "Best Practices",
+  //     count: courses.filter((c) => c.category === "best-practices").length,
+  //     icon: Award,
+  //   },
+  // ];
 
   return (
     <div className="space-y-8">
@@ -63,7 +63,7 @@ export default function TrainingPortalClient({
       </motion.div>
 
       {/* Categories */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
@@ -94,7 +94,7 @@ export default function TrainingPortalClient({
             </motion.div>
           );
         })}
-      </motion.div>
+      </motion.div> */}
 
       {/* Featured Courses */}
       <motion.section
