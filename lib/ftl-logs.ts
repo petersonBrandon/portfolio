@@ -41,7 +41,7 @@ async function getMarkdownFiles(directory: string): Promise<string[]> {
 }
 
 export async function getAllMissionLogs(): Promise<MissionLog[]> {
-  const logsDirectory = path.join(process.cwd(), "src/ftl/logs");
+  const logsDirectory = path.join(process.cwd(), "ftl/logs");
 
   try {
     // Check if directory exists
@@ -90,7 +90,7 @@ export async function getAllMissionLogs(): Promise<MissionLog[]> {
 export async function getMissionLogBySlug(
   slug: string
 ): Promise<MissionLog | null> {
-  const logsDirectory = path.join(process.cwd(), "src/ftl/logs");
+  const logsDirectory = path.join(process.cwd(), "ftl/logs");
 
   try {
     // Handle both flat slugs and nested slugs (e.g., "subfolder/filename")

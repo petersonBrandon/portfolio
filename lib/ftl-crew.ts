@@ -63,7 +63,7 @@ async function getMarkdownFiles(directory: string): Promise<string[]> {
 }
 
 export async function getAllCrewMembers(): Promise<CrewMember[]> {
-  const crewDirectory = path.join(process.cwd(), "src/ftl/crew");
+  const crewDirectory = path.join(process.cwd(), "ftl/crew");
 
   try {
     // Check if directory exists
@@ -122,7 +122,7 @@ export async function getAllCrewMembers(): Promise<CrewMember[]> {
 export async function getCrewMemberBySlug(
   slug: string
 ): Promise<CrewMember | null> {
-  const crewDirectory = path.join(process.cwd(), "src/ftl/crew");
+  const crewDirectory = path.join(process.cwd(), "ftl/crew");
 
   try {
     // FIXED: Search for the file across all subdirectories

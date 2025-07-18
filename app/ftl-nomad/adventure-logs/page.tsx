@@ -33,7 +33,7 @@ export default async function AdventureLogs() {
         <div className="bg-black bg-opacity-40 p-6 rounded border border-gray-600 text-center">
           <p className="text-gray-400">No mission logs found in database.</p>
           <p className="text-sm text-gray-500 mt-2">
-            Create markdown files in src/ftl/logs/ to populate this archive.
+            Create markdown files in ftl/logs/ to populate this archive.
           </p>
         </div>
       ) : (

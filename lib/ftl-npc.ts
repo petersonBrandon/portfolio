@@ -66,7 +66,7 @@ async function getMarkdownFiles(directory: string): Promise<string[]> {
 }
 
 export async function getAllNPCs(): Promise<NPC[]> {
-  const npcDirectory = path.join(process.cwd(), "src/ftl/npcs");
+  const npcDirectory = path.join(process.cwd(), "ftl/npcs");
 
   try {
     // Check if directory exists
@@ -144,7 +144,7 @@ export async function getAllNPCs(): Promise<NPC[]> {
 }
 
 export async function getNPCBySlug(slug: string): Promise<NPC | null> {
-  const npcDirectory = path.join(process.cwd(), "src/ftl/npcs");
+  const npcDirectory = path.join(process.cwd(), "ftl/npcs");
 
   try {
     console.log(`getNPCBySlug - Looking for slug: ${slug}`);

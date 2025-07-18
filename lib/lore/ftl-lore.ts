@@ -64,7 +64,7 @@ async function getLoreFiles(directory: string): Promise<string[]> {
 }
 
 export async function getAllLoreEntries(): Promise<LoreEntry[]> {
-  const loreDirectory = path.join(process.cwd(), "src/ftl/lore/lore");
+  const loreDirectory = path.join(process.cwd(), "ftl/lore/lore");
 
   try {
     await fs.access(loreDirectory);
@@ -113,7 +113,7 @@ export async function getAllLoreEntries(): Promise<LoreEntry[]> {
 }
 
 export async function getLoreEntry(id: string): Promise<LoreEntry | null> {
-  const loreDirectory = path.join(process.cwd(), "src/ftl/lore/lore");
+  const loreDirectory = path.join(process.cwd(), "ftl/lore/lore");
   const filePath = path.join(loreDirectory, `${id}.md`);
 
   try {

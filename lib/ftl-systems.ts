@@ -75,7 +75,7 @@ async function getSystemFiles(directory: string): Promise<string[]> {
 }
 
 export async function getAllSystems(): Promise<StarSystem[]> {
-  const systemDirectory = path.join(process.cwd(), "src/ftl/locations");
+  const systemDirectory = path.join(process.cwd(), "ftl/locations");
 
   try {
     await fs.access(systemDirectory);

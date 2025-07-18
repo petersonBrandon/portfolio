@@ -28,7 +28,7 @@ export default async function CrewRoster() {
         <div className="bg-black bg-opacity-40 p-6 rounded border border-gray-600 text-center">
           <p className="text-gray-400">No crew records found in database.</p>
           <p className="text-sm text-gray-500 mt-2">
-            Create markdown files in src/ftl/crew/ to populate this roster.
+            Create markdown files in ftl/crew/ to populate this roster.
           </p>
         </div>
       ) : (
