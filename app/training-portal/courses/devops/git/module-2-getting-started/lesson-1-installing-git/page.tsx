@@ -18,14 +18,7 @@ import InteractiveCard from "../../../../../../../components/training/lesson/Int
 import QuizComponent from "../../../../../../../components/training/lesson/QuizComponent";
 import LessonLayout from "../../../../../../../components/training/lesson/LessonLayout";
 import ResultsComponent from "../../../../../../../components/training/lesson/ResultsComponent";
-import { QuizResults } from "../../../../../../../types/lesson";
-
-interface LessonProps {
-  lessonTitle: string;
-  moduleTitle: string;
-  lessonNumber: number;
-  moduleNumber: number;
-}
+import { LessonProps, QuizResults } from "../../../../../../../types/lesson";
 
 export default function InstallingGitLesson({
   lessonTitle = "Installing Git",
