@@ -19,12 +19,13 @@ import LessonLayout from "../../../../../../../components/training/lesson/Lesson
 import ResultsComponent from "../../../../../../../components/training/lesson/ResultsComponent";
 import { LessonProps, QuizResults } from "../../../../../../../types/lesson";
 
-export default function WhatIsGitLesson({
-  lessonTitle = "What is Git and Why Use It?",
-  moduleTitle = "Git Fundamentals",
-  lessonNumber = 2,
-  moduleNumber = 1,
-}: LessonProps) {
+export default function WhatIsGitLesson() {
+  const lessonDetails: LessonProps = {
+    lessonTitle: "What is Git and Why Use It?",
+    moduleTitle: "Introduction",
+    lessonNumber: 2,
+    moduleNumber: 1,
+  };
   const [currentSection, setCurrentSection] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [quizResults, setQuizResults] = useState<QuizResults | null>(null);
@@ -509,10 +510,10 @@ export default function WhatIsGitLesson({
 
   return (
     <LessonLayout
-      lessonTitle={lessonTitle}
-      moduleTitle={moduleTitle}
-      lessonNumber={lessonNumber}
-      moduleNumber={moduleNumber}
+      lessonTitle={lessonDetails.lessonTitle}
+      moduleTitle={lessonDetails.moduleTitle}
+      lessonNumber={lessonDetails.lessonNumber}
+      moduleNumber={lessonDetails.moduleNumber}
       sections={sections}
       currentSection={currentSection}
       onSectionChange={setCurrentSection}

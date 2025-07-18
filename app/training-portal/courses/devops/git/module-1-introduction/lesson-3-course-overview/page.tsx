@@ -22,12 +22,13 @@ import InteractiveCard from "../../../../../../../components/training/lesson/Int
 import LessonLayout from "../../../../../../../components/training/lesson/LessonLayout";
 import { LessonProps } from "../../../../../../../types/lesson";
 
-export default function CourseOverviewLesson({
-  lessonTitle = "Overview of This Course",
-  moduleTitle = "Git Fundamentals",
-  lessonNumber = 3,
-  moduleNumber = 1,
-}: LessonProps) {
+export default function CourseOverviewLesson() {
+  const lessonDetails: LessonProps = {
+    lessonTitle: "Overview of This Course",
+    moduleTitle: "Introduction",
+    lessonNumber: 3,
+    moduleNumber: 1,
+  };
   const [currentSection, setCurrentSection] = useState(0);
   const [completed, setCompleted] = useState(false);
 
@@ -512,10 +513,10 @@ export default function CourseOverviewLesson({
 
   return (
     <LessonLayout
-      lessonTitle={lessonTitle}
-      moduleTitle={moduleTitle}
-      lessonNumber={lessonNumber}
-      moduleNumber={moduleNumber}
+      lessonTitle={lessonDetails.lessonTitle}
+      moduleTitle={lessonDetails.moduleTitle}
+      lessonNumber={lessonDetails.lessonNumber}
+      moduleNumber={lessonDetails.moduleNumber}
       sections={sections}
       currentSection={currentSection}
       onSectionChange={(index: number) => {

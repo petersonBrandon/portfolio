@@ -19,12 +19,14 @@ import LessonLayout from "../../../../../../../components/training/lesson/Lesson
 import ResultsComponent from "../../../../../../../components/training/lesson/ResultsComponent";
 import { LessonProps, QuizResults } from "../../../../../../../types/lesson";
 
-export default function WhatIsVersionControlLesson({
-  lessonTitle = "What is Version Control?",
-  moduleTitle = "Git Fundamentals",
-  lessonNumber = 1,
-  moduleNumber = 1,
-}: LessonProps) {
+export default function WhatIsVersionControlLesson() {
+  const lessonDetails: LessonProps = {
+    lessonTitle: "What is Version Control?",
+    moduleTitle: "Introduction",
+    lessonNumber: 1,
+    moduleNumber: 1,
+  };
+
   const [currentSection, setCurrentSection] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [quizResults, setQuizResults] = useState<QuizResults | null>(null);
@@ -452,10 +454,10 @@ export default function WhatIsVersionControlLesson({
 
   return (
     <LessonLayout
-      lessonTitle={lessonTitle}
-      moduleTitle={moduleTitle}
-      lessonNumber={lessonNumber}
-      moduleNumber={moduleNumber}
+      lessonTitle={lessonDetails.lessonTitle}
+      moduleTitle={lessonDetails.moduleTitle}
+      lessonNumber={lessonDetails.lessonNumber}
+      moduleNumber={lessonDetails.moduleNumber}
       sections={sections}
       currentSection={currentSection}
       onSectionChange={setCurrentSection}
