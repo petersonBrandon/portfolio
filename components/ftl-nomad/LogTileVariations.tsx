@@ -1,6 +1,8 @@
 // components/ftl-nomad/LogTileVariations.tsx
 import Link from "next/link";
 import { MissionLog } from "../../lib/ftl-logs";
+import { customMarkdownComponents } from "@/lib/markdownComponents";
+import ReactMarkdown from "react-markdown";
 
 interface LogTileProps {
   log: MissionLog;
@@ -61,7 +63,9 @@ export const HologramTile = ({ log, formatEarthDate }: LogTileProps) => (
       <div className="h-px bg-gradient-to-r from-cyan-400/30 via-cyan-400/60 to-cyan-400/30" />
 
       <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
-        {log.excerpt}
+        <ReactMarkdown components={customMarkdownComponents}>
+          {log.excerpt}
+        </ReactMarkdown>
       </p>
 
       <div className="flex justify-between items-center text-xs">

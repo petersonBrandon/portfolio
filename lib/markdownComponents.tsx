@@ -57,5 +57,6 @@ export const customMarkdownComponents = {
       {renderChildrenAsString(children)}
     </em>
   ),
+  hr: () => <hr className="pb-4" />,
   // Add other custom components here as needed (e.g., a, img, code, pre)
 };

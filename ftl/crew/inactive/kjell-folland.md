@@ -4,7 +4,7 @@ concept: "Smooth-talking Negotiator"
 species: "Human"
 archetype: "Diplomat"
 player: "George"
-status: "active"
+status: "inactive"
 joinDate: "2025-07-14"
 ---
 

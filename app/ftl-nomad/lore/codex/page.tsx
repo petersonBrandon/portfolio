@@ -4,6 +4,7 @@ import CodexClientPage from "./CodexClient";
 // Define categories here as they are static data and can be defined on the server
 const categories = [
   { id: "all", name: "All Categories", icon: "Book" }, // Using string names for icons as they are not React components here
+  { id: "locations", name: "Locations", icon: "MapPin" },
   { id: "technology", name: "Technology", icon: "Zap" },
   { id: "history", name: "History", icon: "Clock" },
   { id: "species", name: "Species", icon: "Users" },

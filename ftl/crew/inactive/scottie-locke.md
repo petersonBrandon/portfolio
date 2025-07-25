@@ -4,7 +4,7 @@ concept: "Maverick Starpilot"
 species: "Human"
 archetype: "Ace Pilot "
 player: "Grant"
-status: "active"
+status: "inactive"
 joinDate: "2025-07-14"
 ---
 

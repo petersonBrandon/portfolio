@@ -1,5 +1,5 @@
 // lib/ftl-npc.ts
-import fs from "fs/promises";
+import fs, { access, readdir, readFile } from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 
@@ -21,16 +21,54 @@ export interface NPC {
 }
 
 // Helper function to get image URL for an NPC
-function getNPCImageUrl(name: string): string {
+async function getNPCImageUrl(name: string): Promise<string | null> {
   const imageName = name.replace(/\s+/g, "_").toLowerCase();
-  return `/ftl/npcs/images/${imageName}.png`;
+  const npcsDirectory = path.join(
+    process.cwd(),
+    "public",
+    "ftl",
+    "npcs",
+    "images"
+  );
+
+  const imageExtensions = [
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".gif",
+    ".webp",
+    ".bmp",
+    ".svg",
+  ];
+
+  try {
+    // Check if directory exists using fs/promises
+    await access(npcsDirectory);
+
+    // Read all files in the directory
+    const filenames = await readdir(npcsDirectory);
+
+    // Look for a file that matches our NPC name with any supported extension
+    const matchingFile = filenames.find((filename) => {
+      const nameWithoutExt = path.parse(filename).name.toLowerCase();
+      return (
+        nameWithoutExt === imageName &&
+        imageExtensions.some((ext) => filename.toLowerCase().endsWith(ext))
+      );
+    });
+
+    return matchingFile ? `/ftl/npcs/images/${matchingFile}` : null;
+  } catch (error) {
+    console.error("Error finding NPC image:", error);
+    return null;
+  }
 }
 
 // Helper function to check if image exists
 async function imageExists(imagePath: string): Promise<boolean> {
   try {
     const fullPath = path.join(process.cwd(), "public", imagePath);
-    await fs.access(fullPath);
+    await access(fullPath);
     return true;
   } catch {
     return false;
@@ -42,7 +80,7 @@ async function getMarkdownFiles(directory: string): Promise<string[]> {
   const files: string[] = [];
 
   try {
-    const entries = await fs.readdir(directory, { withFileTypes: true });
+    const entries = await readdir(directory, { withFileTypes: true });
 
     for (const entry of entries) {
       const fullPath = path.join(directory, entry.name);
@@ -70,13 +108,13 @@ export async function getAllNPCs(): Promise<NPC[]> {
 
   try {
     // Check if directory exists
-    await fs.access(npcDirectory);
+    await access(npcDirectory);
 
     const filePaths = await getMarkdownFiles(npcDirectory);
     const npcs = await Promise.all(
       filePaths.map(async (filePath) => {
         try {
-          const fileContents = await fs.readFile(filePath, "utf8");
+          const fileContents = await readFile(filePath, "utf8");
           const { data, content } = matter(fileContents);
 
           // Create description excerpt from content
@@ -91,8 +129,8 @@ export async function getAllNPCs(): Promise<NPC[]> {
               : "No description available.";
 
           const name = data.name || "Unknown NPC";
-          const imageUrl = getNPCImageUrl(name);
-          const hasImage = await imageExists(imageUrl);
+          const imageUrl = await getNPCImageUrl(name);
+          const hasImage = imageUrl && (await imageExists(imageUrl));
 
           // Create slug from just the filename (ignore subdirectory structure)
           const fileName = path.basename(filePath, ".md");
@@ -163,7 +201,7 @@ export async function getNPCBySlug(slug: string): Promise<NPC | null> {
 
     console.log(`getNPCBySlug - Found file: ${targetFile}`);
 
-    const fileContents = await fs.readFile(targetFile, "utf8");
+    const fileContents = await readFile(targetFile, "utf8");
     const { data, content } = matter(fileContents);
 
     // Create description excerpt from content
@@ -178,8 +216,8 @@ export async function getNPCBySlug(slug: string): Promise<NPC | null> {
         : "No description available.";
 
     const name = data.name || "Unknown NPC";
-    const imageUrl = getNPCImageUrl(name);
-    const hasImage = await imageExists(imageUrl);
+    const imageUrl = await getNPCImageUrl(name);
+    const hasImage = imageUrl && (await imageExists(imageUrl));
 
     // Parse relationships and tags from comma-separated strings
     const relationships = data.relationships
