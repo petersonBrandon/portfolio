@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "@types/node": "^22.0.2",
-    "@types/react": "19.1.6",
-    "@types/react-dom": "19.1.5",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
     "@types/three": "^0.177.0",
     "autoprefixer": "^10.4.19",
     "eslint": "8.46.0",
-    "eslint-config-next": "15.3.3",
+    "eslint-config-next": "15.4.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.525.0",
     "motion": "^12.20.1",
-    "next": "15.3.3",
+    "next": "15.4.1",
     "postcss": "^8.4.40",
     "react": "19.1.0",
     "react-dom": "19.1.0",
@@ -29,7 +29,7 @@
     "typescript": "^5.5.4"
   },
   "overrides": {
-    "@types/react": "19.1.6",
-    "@types/react-dom": "19.1.5"
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6"
   }
 }
