@@ -292,28 +292,28 @@ export default function CodexClientPage({
               {filteredEntries.map((entry, index) => (
                 <motion.div
                   key={entry.id}
-                  className="bg-black bg-opacity-60 border border-gray-600 rounded p-4 hover:border-blue-400 hover:border-opacity-50 transition-all cursor-pointer"
+                  className="bg-black bg-opacity-60 border border-gray-600 rounded p-3 sm:p-4 hover:border-blue-400 hover:border-opacity-50 transition-all cursor-pointer"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   onClick={() => handleEntryClick(entry)}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="flex items-start justify-between mb-2">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-2">
                     <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-blue-400 font-bold text-lg">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                        <h3 className="text-blue-400 font-bold text-base sm:text-lg break-words">
                           {entry.title}
                         </h3>
                         <span
-                          className={`text-xs px-2 py-1 rounded ${getClassificationColor(
+                          className={`text-xs px-2 py-1 rounded self-start ${getClassificationColor(
                             entry.classification
                           )}`}
                         >
                           {entry.classification}
                         </span>
                       </div>
-                      <div className="flex items-center gap-4 text-xs text-gray-400 mb-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-xs text-gray-400 mb-2">
                         <span className="uppercase">{entry.category}</span>
                         {entry.author && <span>By: {entry.author}</span>}
                         <span>
@@ -323,17 +323,17 @@ export default function CodexClientPage({
                     </div>
                   </div>
 
-                  <p className="text-gray-300 text-sm mb-3">
+                  <p className="text-gray-300 text-sm mb-3 line-clamp-3">
                     {entry.summary ||
                       ("excerpt" in entry ? entry.excerpt : "") ||
                       "No summary available"}
                   </p>
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4 text-xs">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs">
                       {entry.threat && (
                         <div className="flex items-center gap-1">
-                          <AlertTriangle className="h-3 w-3" />
+                          <AlertTriangle className="h-3 w-3 flex-shrink-0" />
                           <span className="text-gray-400">Threat:</span>
                           <span className={getThreatColor(entry.threat)}>
                             {entry.threat}
@@ -342,7 +342,7 @@ export default function CodexClientPage({
                       )}
                       {entry.sourceReliability && (
                         <div className="flex items-center gap-1">
-                          <Shield className="h-3 w-3" />
+                          <Shield className="h-3 w-3 flex-shrink-0" />
                           <span className="text-gray-400">Reliability:</span>
                           <span
                             className={getReliabilityColor(
@@ -355,23 +355,28 @@ export default function CodexClientPage({
                       )}
                       {entry.location && (
                         <div className="flex items-center gap-1">
-                          <MapPin className="h-3 w-3" />
-                          <span className="text-gray-400">
+                          <MapPin className="h-3 w-3 flex-shrink-0" />
+                          <span className="text-gray-400 truncate">
                             {entry.location}
                           </span>
                         </div>
                       )}
                     </div>
 
-                    <div className="flex gap-1">
-                      {entry.tags.map((tag) => (
+                    <div className="flex flex-wrap gap-1">
+                      {entry.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-1 bg-gray-700 bg-opacity-50 text-xs rounded text-gray-300"
+                          className="px-2 py-1 bg-gray-700 bg-opacity-50 text-xs rounded text-gray-300 truncate"
                         >
                           {tag}
                         </span>
                       ))}
+                      {entry.tags.length > 3 && (
+                        <span className="px-2 py-1 bg-gray-700 bg-opacity-50 text-xs rounded text-gray-300">
+                          +{entry.tags.length - 3}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </motion.div>
