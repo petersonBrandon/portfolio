@@ -1,0 +1,35 @@
+{
+  "id": "neerja",
+  "name": "Neerja System",
+  "coordinates": { "q": 2, "r": -1, "s": -1 },
+  "type": "",
+  "planets": "",
+  "faction": "",
+  "description": "",
+  "threats": "",
+  "resources": [],
+  "visited": true,
+  "lastVisit": "",
+  "population": "",
+  "government": "",
+  "economy": "",
+  "defenses": "",
+  "starType": "",
+  "climate": "",
+  "gravity": "",
+  "atmosphere": "",
+  "pointsOfInterest": [
+    {
+      "id": "",
+      "name": "",
+      "type": "",
+      "description": "",
+      "coordinates": "",
+      "discovered": true,
+      "threat": ""
+    }
+  ],
+  "tradingPosts": [],
+  "jumpGates": [],
+  "notes": ""
+}

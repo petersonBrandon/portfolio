@@ -68,7 +68,7 @@ export default async function MissionLogDetail({ params }: Props) {
         </div>
       </div>
 
-      <div className="bg-black bg-opacity-40 p-6 rounded border border-blue-400 border-opacity-30">
+      <div className="bg-black bg-opacity-40 p-6 rounded border border-blue-400 border-opacity-30 max-w-screen-lg">
         <div className="prose prose-invert prose-blue max-w-none">
           <ReactMarkdown components={customMarkdownComponents}>
             {log.content}
