@@ -1,4 +1,5 @@
 // lib/markdownComponents.jsx
+import Image from "next/image";
 import React from "react";
 
 // Helper function to ensure children are rendered as a string
@@ -58,5 +59,26 @@ export const customMarkdownComponents = {
     </em>
   ),
   hr: () => <hr className="pb-4" />,
+  img: ({ src, alt, title }: any) => (
+    <div className="mb-4">
+      <Image
+        src={src}
+        alt={alt || ""}
+        title={title}
+        width={800}
+        height={600}
+        className="rounded-lg border border-gray-600 border-opacity-50"
+        style={{
+          width: "100%",
+          height: "auto",
+        }}
+      />
+      {alt && (
+        <p className="text-gray-400 text-xs mt-2 italic font-mono text-center">
+          {alt}
+        </p>
+      )}
+    </div>
+  ),
   // Add other custom components here as needed (e.g., a, img, code, pre)
 };
