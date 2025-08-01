@@ -7,8 +7,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Test Engineer | Quantum OS",
-  description: "Personal portfolio of a software test engineer",
+  title: "Brandon Peterson - Test Engineer | Quantum OS",
+  description:
+    "Personal portfolio of Brandon Peterson - a software test engineer",
 };
 
 export default function RootLayout({
