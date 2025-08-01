@@ -2,6 +2,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import { Metadata } from "next";
 import {
   getAllMissionLogs,
   getMissionLogBySlug,
@@ -17,6 +18,48 @@ export async function generateStaticParams() {
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+// Add this function to generate dynamic metadata
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const log = await getMissionLogBySlug(slug);
+
+  if (!log) {
+    return {
+      title: "Mission Log Not Found",
+      description: "The requested mission log could not be found.",
+    };
+  }
+
+  // Extract first paragraph or truncate content for description
+  const description =
+    log.content
+      .replace(/[#*`]/g, "") // Remove markdown formatting
+      .split("\n")
+      .find((line) => line.trim().length > 0) // Find first non-empty line
+      ?.substring(0, 160) + "..." || "FTL Nomad adventure log";
+
+  return {
+    title: `${log.title} - FTL Nomad Adventure Logs`,
+    description,
+    openGraph: {
+      title: log.title,
+      description,
+      type: "article",
+      publishedTime: log.earthDate,
+      tags: ["FTL Nomad", "Adventure Log", "Gaming", log.crew],
+    },
+    twitter: {
+      card: "summary",
+      title: log.title,
+      description,
+    },
+    other: {
+      stardate: log.stardate,
+      crew: log.crew,
+    },
+  };
 }
 
 export default async function MissionLogDetail({ params }: Props) {
@@ -67,7 +110,6 @@ export default async function MissionLogDetail({ params }: Props) {
           </span>
         </div>
       </div>
-
       <div className="bg-black bg-opacity-40 p-6 rounded border border-blue-400 border-opacity-30 max-w-screen-lg">
         <div className="prose prose-invert prose-blue max-w-none">
           <ReactMarkdown components={customMarkdownComponents}>
