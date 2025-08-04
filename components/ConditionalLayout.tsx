@@ -13,7 +13,8 @@ export default function ConditionalLayout({
 }: ConditionalLayoutProps) {
   const pathname = usePathname();
 
-  const isFTLNomadPage = pathname.startsWith("/ftl-nomad");
+  const isFTLNomadPage =
+    pathname.startsWith("/ftl-nomad") || pathname.startsWith("/ftl-utilities");
   const isTrainingPortalPage = pathname.startsWith("/training-portal");
   const courseContentMatch =
     pathname.includes("courses") && pathname.includes("module");
