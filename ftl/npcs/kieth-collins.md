@@ -8,7 +8,7 @@ status: alive
 firstMet: 2025-7-25
 lastSeen: 2025-7-25
 relationships:
-tags: nox station admin
+tags: [nox station admin]
 ---
 
 # Kieth Collins

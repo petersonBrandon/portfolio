@@ -136,14 +136,6 @@ export async function getAllNPCs(): Promise<NPC[]> {
           const fileName = path.basename(filePath, ".md");
           const slug = fileName;
 
-          // Parse relationships and tags from comma-separated strings
-          const relationships = data.relationships
-            ? data.relationships.split(",").map((rel: string) => rel.trim())
-            : [];
-          const tags = data.tags
-            ? data.tags.split(",").map((tag: string) => tag.trim())
-            : [];
-
           return {
             slug,
             name,
@@ -156,8 +148,8 @@ export async function getAllNPCs(): Promise<NPC[]> {
             notes: content,
             firstMet: data.firstMet || data.date || "",
             lastSeen: data.lastSeen || "",
-            relationships,
-            tags,
+            relationships: data.relationships || [],
+            tags: data.tags || [],
             imageUrl: hasImage ? imageUrl : "/ftl/npcs/images/anon.svg",
           } as NPC;
         } catch (error) {
@@ -219,14 +211,6 @@ export async function getNPCBySlug(slug: string): Promise<NPC | null> {
     const imageUrl = await getNPCImageUrl(name);
     const hasImage = imageUrl && (await imageExists(imageUrl));
 
-    // Parse relationships and tags from comma-separated strings
-    const relationships = data.relationships
-      ? data.relationships.split(",").map((rel: string) => rel.trim())
-      : [];
-    const tags = data.tags
-      ? data.tags.split(",").map((tag: string) => tag.trim())
-      : [];
-
     return {
       slug,
       name,
@@ -239,8 +223,8 @@ export async function getNPCBySlug(slug: string): Promise<NPC | null> {
       notes: content,
       firstMet: data.firstMet || data.date || "",
       lastSeen: data.lastSeen || "",
-      relationships,
-      tags,
+      relationships: data.relationships,
+      tags: data.tags,
       imageUrl: hasImage ? imageUrl : "/ftl/npcs/images/anon.svg",
     } as NPC;
   } catch (error) {

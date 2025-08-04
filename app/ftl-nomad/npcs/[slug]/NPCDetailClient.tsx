@@ -71,9 +71,9 @@ const InfoCard = ({
 );
 
 export default function NPCDetailClient({ npc }: { npc: NPC }) {
-  const [activeTab, setActiveTab] = useState<
-    "overview" | "notes" | "relationships"
-  >("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "relationships">(
+    "overview"
+  );
 
   return (
     <div className="space-y-6">

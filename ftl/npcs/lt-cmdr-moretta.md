@@ -8,7 +8,7 @@ status: alive
 firstMet: 2025-7-25
 lastSeen: 2025-7-25
 relationships:
-tags: military, reliable, veteran, technical expert
+tags: [military, reliable, veteran, technical expert]
 ---
 
 # Lt. Cmdr. Moretta

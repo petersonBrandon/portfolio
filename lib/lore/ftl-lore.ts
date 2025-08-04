@@ -13,6 +13,7 @@ export interface LoreEntry {
     | "culture"
     | "phenomena"
     | "organizations"
+    | "locations"
     | "other";
   tags: string[];
   classification: "PUBLIC" | "RESTRICTED" | "CLASSIFIED" | "TOP_SECRET";
