@@ -652,27 +652,18 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
   const pathname = usePathname();
   const [jumpDriveStatus, setJumpDriveStatus] = useState("READY");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [hasBooted] = useState(() => {
-    if (typeof window !== "undefined") {
-      const stored = sessionStorage.getItem("ftl-nomad-booted");
-      return stored === "true";
-    }
-    return false;
-  });
+  const [hasBooted, setHasBooted] = useState(false);
+  const [isBooting, setIsBooting] = useState(true);
+  const [showInterface, setShowInterface] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
-  const [isBooting, setIsBooting] = useState(() => {
-    if (typeof window !== "undefined") {
-      return sessionStorage.getItem("ftl-nomad-booted") !== "true";
-    }
-    return true;
-  });
-
-  const [showInterface, setShowInterface] = useState(() => {
-    if (typeof window !== "undefined") {
-      return sessionStorage.getItem("ftl-nomad-booted") === "true";
-    }
-    return false;
-  });
+  useEffect(() => {
+    const bootedState = sessionStorage.getItem("ftl-nomad-booted") === "true";
+    setHasBooted(bootedState);
+    setIsBooting(!bootedState);
+    setShowInterface(bootedState);
+    setIsHydrated(true);
+  }, []);
 
   useEffect(() => {
     const statuses = ["READY", "CHARGING", "COOLDOWN", "MAINTENANCE"];
@@ -692,7 +683,9 @@ export default function FTLNomadLayout({ children }: FTLNomadLayoutProps) {
   return (
     <div className="min-h-screen bg-gray-900 text-blue-100 font-mono relative">
       <AnimatePresence>
-        {isBooting && <BootSequence onComplete={handleBootComplete} />}
+        {isBooting && isHydrated && (
+          <BootSequence onComplete={handleBootComplete} />
+        )}
       </AnimatePresence>
 
       {/* Background effects */}
